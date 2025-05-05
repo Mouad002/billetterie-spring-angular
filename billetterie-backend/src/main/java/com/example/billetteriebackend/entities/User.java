@@ -11,8 +11,8 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data
 @AllArgsConstructor @NoArgsConstructor
-@DiscriminatorColumn(name = "TYPE", length = 16, discriminatorType = DiscriminatorType.STRING)
-public class User {
+@DiscriminatorColumn(name = "user_type", length = 16, discriminatorType = DiscriminatorType.STRING)
+public abstract class User {
 
     @Id
     private String id;

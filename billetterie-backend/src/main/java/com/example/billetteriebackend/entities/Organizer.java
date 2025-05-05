@@ -1,6 +1,7 @@
 package com.example.billetteriebackend.entities;
 
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor @NoArgsConstructor
+@DiscriminatorValue("ORGANIZER")
 public class Organizer extends User {
 
     @OneToMany(mappedBy = "organizer", fetch = FetchType.EAGER)
