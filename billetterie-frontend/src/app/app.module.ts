@@ -7,7 +7,9 @@ import { MyEventsComponent } from './features/organizer/components/my-events/my-
 import { NewEventsComponent } from './features/organizer/components/new-events/new-events.component';
 import { EventStatisticsComponent } from './features/organizer/components/event-statistics/event-statistics.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-
+import {HttpClientModule} from "@angular/common/http";
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,10 @@ import { HeaderComponent } from './shared/components/header/header.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterLink
   ],
   providers: [],
   bootstrap: [AppComponent]
