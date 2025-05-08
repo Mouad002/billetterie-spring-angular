@@ -16,7 +16,7 @@ import java.util.List;
 public class Role {
 
     @Id
-    private String id;
+    private Long id;
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -1,20 +1,15 @@
-package com.example.billetteriebackend.entities;
+package com.example.billetteriebackend.dtos;
 
+import com.example.billetteriebackend.entities.Status;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.List;
 
-@Entity
 @Data
-@AllArgsConstructor @NoArgsConstructor
-public class Event {
+public class EventDTO {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
@@ -32,10 +27,4 @@ public class Event {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
-    @ManyToOne
-    private Category category;
-    @ManyToOne
-    private Organizer organizer;
-    @OneToMany(mappedBy = "event")
-    private List<Ticket> tickets;
 }

@@ -11,11 +11,11 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data
 @AllArgsConstructor @NoArgsConstructor
-@DiscriminatorColumn(name = "user_type", length = 16, discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "TYPE", length = 16, discriminatorType = DiscriminatorType.STRING)
 public abstract class User {
 
-    @Id
-    private String id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String fullName;
     private String username;
     private String password;
