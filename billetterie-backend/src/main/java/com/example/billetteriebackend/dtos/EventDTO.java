@@ -1,5 +1,6 @@
 package com.example.billetteriebackend.dtos;
 
+import com.example.billetteriebackend.entities.Category;
 import com.example.billetteriebackend.entities.Status;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,6 +16,7 @@ public class EventDTO {
     private String description;
     private String location;
     private String image;
+    private Category category;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -26,5 +28,7 @@ public class EventDTO {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+
+
 
 }
