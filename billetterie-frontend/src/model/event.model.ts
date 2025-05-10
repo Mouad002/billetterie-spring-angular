@@ -1,21 +1,12 @@
-import { Category } from './Category.model'; // si nécessaire
-
-
-export interface Event {
+export interface AppEvent {
     id:number;
     title:String;
     description:String;
     location:String;
     image:String;
-    category:Category;
-
-    
+    category:any;
     status:String;
-
-    
     startDate:Date;
-
-    
     endDate:Date;
 
   }

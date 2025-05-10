@@ -13,23 +13,20 @@ import java.util.List;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class Event {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
     private String location;
     private String image;
-
+    
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     @ManyToOne

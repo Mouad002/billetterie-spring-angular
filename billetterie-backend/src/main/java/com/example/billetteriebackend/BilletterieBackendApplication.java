@@ -2,7 +2,10 @@ package com.example.billetteriebackend;
 
 import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.dtos.OrganizerDTO;
+import com.example.billetteriebackend.entities.Event;
 import com.example.billetteriebackend.entities.Status;
+import com.example.billetteriebackend.repositories.EventRepository;
+import com.example.billetteriebackend.services.EventService;
 import com.example.billetteriebackend.services.OrganizerServices;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +22,7 @@ public class BilletterieBackendApplication {
 		SpringApplication.run(BilletterieBackendApplication.class, args);
 	}
 
-	@Bean
+//	@Bean
 	CommandLineRunner commandLineRunner(OrganizerServices organizerServices) {
 		return args -> {
 			// 2. Créer un événement
@@ -34,6 +37,20 @@ public class BilletterieBackendApplication {
 			eventDTO.setStatus(Status.COMPLETED);
 
 			organizerServices.saveEvent(eventDTO);
+		};
+	}
+//	@Bean
+	CommandLineRunner runner(EventRepository eventRepository) {
+		return args -> {
+			Event event = new Event();
+			event.setTitle("Salah Fati");
+			event.setDescription("Salah Fati est un joueur de football professionnel marocain");
+			event.setLocation("Casablanca");
+			event.setImage("salah.jpg");
+			event.setStatus(Status.COMPLETED);
+			event.setStartDate(new Date());
+			event.setEndDate(new Date());
+			eventRepository.save(event);
 		};
 	}
 

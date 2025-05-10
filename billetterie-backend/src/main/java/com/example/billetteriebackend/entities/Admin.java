@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @DiscriminatorValue("ADMIN")
 @AllArgsConstructor
 
-public class Admin extends User {
+public class Admin extends User{
 }

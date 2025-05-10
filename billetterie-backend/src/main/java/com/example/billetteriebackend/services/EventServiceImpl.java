@@ -2,6 +2,7 @@ package com.example.billetteriebackend.services;
 
 import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.entities.Event;
+import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.mappers.BilletterieMapperImpl;
 import com.example.billetteriebackend.mappers.EventsMapper;
 import com.example.billetteriebackend.repositories.EventRepository;
@@ -19,5 +20,11 @@ public class EventServiceImpl implements EventService {
             List<EventDTO> eventDTOS = events.stream().map(event -> dtoMapper.fromEvent(event)).collect(Collectors.toList());
             return eventDTOS;
         }
+
+    @Override
+    public EventDTO getEvent(Long id) throws EventNotFoundException {
+        Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Event not found"));
+        return dtoMapper.fromEvent(event);
+    }
 
 }

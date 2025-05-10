@@ -4,15 +4,17 @@ import { EventService } from './services/event.service';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import {AppEvent} from '../model/event.model';
+
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
   standalone: false,
+  templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
-  events! : Observable<Array<Event>>;
+  events! : Observable<Array<AppEvent>>;
   errorMessage!: string;
   searchFormGroup : FormGroup | undefined;
   constructor(private eventService : EventService, private fb : FormBuilder, private router : Router) { }
@@ -33,7 +35,7 @@ export class AppComponent implements OnInit{
     );
   }
 
-  
 
-  
+
+
 }
