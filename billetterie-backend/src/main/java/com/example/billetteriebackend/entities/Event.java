@@ -19,16 +19,10 @@ public class Event {
     private String description;
     private String location;
     private String image;
-    
     @Enumerated(EnumType.STRING)
     private Status status;
-
     @Temporal(TemporalType.DATE)
     private Date startDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
-
     @ManyToOne
     private Category category;
     @ManyToOne
