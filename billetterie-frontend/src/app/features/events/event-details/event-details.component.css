@@ -1,0 +1,39 @@
+body {
+  background-color: #1a2030;
+  color: white;
+  font-family: Arial sans-serif ;
+}
+.main-orange {
+  color: #FF6B00;
+}
+.bg-main-orange {
+  background-color: #FF6B00;
+}
+.btnBuyTicket:hover {
+  background-color: #d14201;
+  color: white;
+  font-weight: bold;
+}
+.heart-animation {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+.event-banner {
+  position: relative;
+  overflow: hidden;
+}
+.heart {
+  position: absolute;
+  color: #ff4d4d;
+  opacity: 0.8;
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+.emoji {
+  position: absolute;
+  z-index: 1;
+}
