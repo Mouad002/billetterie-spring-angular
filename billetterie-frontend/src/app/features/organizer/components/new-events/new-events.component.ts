@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EventsService } from '../../services/events.service';
 import Swal from 'sweetalert2';
-import { Events } from '../../../../model/events.model';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AppEvent } from '../../../../../model/event.model';
 
 @Component({
   selector: 'app-new-events',
@@ -41,7 +41,7 @@ export class NewEventsComponent implements OnInit{
       return;
     }
 
-    let event:Events = this.newEventFormGroup.value;
+    let event:AppEvent = this.newEventFormGroup.value;
     this.eventService.saveEvent(event).subscribe({
       next : data =>{
          Swal.fire({

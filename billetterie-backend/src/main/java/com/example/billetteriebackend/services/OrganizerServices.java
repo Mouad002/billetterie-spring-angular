@@ -13,4 +13,6 @@ public interface OrganizerServices {
     EventDTO updateEvent(EventDTO eventDTO);
     void deleteEvents(Long id);
     List<EventDTO> searchEvents(String keyword);
+
+    //CategoryDTO saveCategory(CategoryDTO categoryDTO);
 }

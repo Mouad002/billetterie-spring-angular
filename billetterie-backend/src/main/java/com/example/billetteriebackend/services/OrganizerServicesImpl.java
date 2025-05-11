@@ -1,12 +1,9 @@
 package com.example.billetteriebackend.services;
 
-import com.example.billetteriebackend.dtos.CategoryDTO;
 import com.example.billetteriebackend.dtos.EventDTO;
-import com.example.billetteriebackend.entities.Category;
 import com.example.billetteriebackend.entities.Event;
 import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.mappers.BilletterieMapperImpl;
-import com.example.billetteriebackend.repositories.CategoryRepository;
 import com.example.billetteriebackend.repositories.EventRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class OrganizerServicesImpl implements OrganizerServices {
 
-    private final CategoryRepository categoryRepository;
+    //private final CategoryRepository categoryRepository;
     private EventRepository eventRepository;
     private BilletterieMapperImpl dtoMapper;
 
@@ -65,10 +62,10 @@ public class OrganizerServicesImpl implements OrganizerServices {
         return eventDTOS;
     }
 
-    @Override
-    public CategoryDTO saveCategory(CategoryDTO categoryDTO) {
-        Category category = dtoMapper.fromCategoryDTO(categoryDTO);
-        Category saveCategory = categoryRepository.save(category);
-        return dtoMapper.fromCategory(saveCategory);
-    }
+//    @Override
+//    public CategoryDTO saveCategory(CategoryDTO categoryDTO) {
+//        Category category = dtoMapper.fromCategoryDTO(categoryDTO);
+//        Category saveCategory = categoryRepository.save(category);
+//        return dtoMapper.fromCategory(saveCategory);
+//    }
 }

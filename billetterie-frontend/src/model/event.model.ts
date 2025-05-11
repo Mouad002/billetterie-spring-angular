@@ -6,7 +6,6 @@ export interface AppEvent {
     image:String;
     category:any;
     status:String;
-    startDate:Date;
-    endDate:Date;
+    dateEvent:Date;
 
   }

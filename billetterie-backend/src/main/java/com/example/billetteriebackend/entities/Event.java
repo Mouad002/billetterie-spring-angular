@@ -20,20 +20,13 @@ public class Event {
     private String description;
     private String location;
     private String image;
+    private Date dateEvent;
+    private Category category;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
-
-    @ManyToOne
-    private Category category;
     @ManyToOne
     private Organizer organizer;
     @OneToMany(mappedBy = "event")

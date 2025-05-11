@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { catchError, Observable, throwError } from 'rxjs';
 import { EventsService } from '../../services/events.service';
-import { Events } from '../../../../model/events.model';
+import { AppEvent } from '../../../../../model/event.model';
 
 @Component({
   selector: 'app-my-events',
@@ -12,7 +12,7 @@ import { Events } from '../../../../model/events.model';
 })
 export class MyEventsComponent implements OnInit{
 
-  events! : Observable<Array<Events>>;
+  events! : Observable<Array<AppEvent>>;
   errorMessage! : string;
   searchFormGroup! : FormGroup;
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Events } from '../../../model/events.model';
 import { Observable } from 'rxjs';
+import { AppEvent } from '../../../../model/event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +10,21 @@ export class EventsService {
 
   constructor(private http : HttpClient) { }
 
-  searchEvent(keyword : string) : Observable<Array<Events>>{
-    return this.http.get<Array<Events>>("http://localhost:8085/events/search?keyword="+keyword);
+  searchEvent(keyword : string) : Observable<Array<AppEvent>>{
+    return this.http.get<Array<AppEvent>>("http://localhost:8085/events/search?keyword="+keyword);
   }
 
-  getEvents():Observable<Array<Events>>{
-    return this.http.get<Array<Events>>("http://localhost:8085/events");
+  getEvents():Observable<Array<AppEvent>>{
+    return this.http.get<Array<AppEvent>>("http://localhost:8085/events");
   }
 
-  saveEvent(event : Events):Observable<Events>{
-    return this.http.post<Events>("http://localhost:8085/events", event);
+  saveEvent(event : AppEvent):Observable<AppEvent>{
+    return this.http.post<AppEvent>("http://localhost:8085/events", event);
   }
 
   // changer l'URL
-  getEventById(id : number):Observable<Events>{
-    return this.http.get<Events>(`http://localhost:8085/events/${id}`);
+  getEventById(id : number):Observable<AppEvent>{
+    return this.http.get<AppEvent>(`http://localhost:8085/events/${id}`);
   }
 
 

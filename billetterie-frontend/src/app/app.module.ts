@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +8,10 @@ import { MyEventsComponent } from './features/organizer/components/my-events/my-
 import { NewEventsComponent } from './features/organizer/components/new-events/new-events.component';
 import { EventStatisticsComponent } from './features/organizer/components/event-statistics/event-statistics.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink, RouterModule } from '@angular/router';
+import { EventDetailsComponent } from './features/events/event-details/event-details.component';
+import { TicketsSelectionComponent } from './features/events/tickets-selection/tickets-selection.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +20,17 @@ import { HeaderComponent } from './shared/components/header/header.component';
     NewEventsComponent,
     EventStatisticsComponent,
     HeaderComponent,
+    EventDetailsComponent, 
+    TicketsSelectionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule, 
+    FormsModule, 
+    RouterModule, 
+    RouterLink
   ],
   providers: [],
   bootstrap: [AppComponent]

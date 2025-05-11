@@ -10,7 +10,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @AllArgsConstructor
-@CrossOrigin("*")
+
 public class EventRestController {
 
     private OrganizerServices organizerServices;
