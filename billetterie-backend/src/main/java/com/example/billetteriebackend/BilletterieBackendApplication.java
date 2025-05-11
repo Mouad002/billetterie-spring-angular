@@ -3,7 +3,10 @@ package com.example.billetteriebackend;
 import com.example.billetteriebackend.dtos.CategoryDTO;
 import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.dtos.OrganizerDTO;
+import com.example.billetteriebackend.entities.Event;
 import com.example.billetteriebackend.entities.Status;
+import com.example.billetteriebackend.repositories.EventRepository;
+import com.example.billetteriebackend.services.EventService;
 import com.example.billetteriebackend.services.OrganizerServices;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +23,7 @@ public class BilletterieBackendApplication {
 		SpringApplication.run(BilletterieBackendApplication.class, args);
 	}
 
-	@Bean
+//	@Bean
 	CommandLineRunner commandLineRunner(OrganizerServices organizerServices) {
 		return args -> {
 
@@ -84,5 +87,6 @@ public class BilletterieBackendApplication {
 			organizerServices.saveEvent(event3);
 		};
 	}
+
 
 }

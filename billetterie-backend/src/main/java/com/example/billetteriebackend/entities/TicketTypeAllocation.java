@@ -1,33 +1,25 @@
 package com.example.billetteriebackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
+import lombok.Setter;
 
 @Entity
-@Data
 @AllArgsConstructor @NoArgsConstructor
-public class Ticket {
+@Getter
+@Setter
+public class TicketTypeAllocation {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String seatNumber;
-    private double price;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date reservationDate;
     @Enumerated(EnumType.STRING)
     private TicketType ticketType;
     @ManyToOne
     @JoinColumn(name = "event_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Event event;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-
-
+    private int maxQuantity;
+    private double price;
 }

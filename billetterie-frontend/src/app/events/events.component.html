@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements - Plateforme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-calendar-alt text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-800">EventSphere</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-primary transition">Accueil</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition">Événements</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition">Créer</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition">Profil</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="relative">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profil" class="w-8 h-8 rounded-full cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section with Search -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Découvrez des événements passionnants</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Trouvez des événements près de chez vous ou explorez des conférences virtuelles</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-3xl mx-auto relative mb-6">
+                <div class="relative flex items-center">
+                    <input type="text" placeholder="Rechercher des événements..." 
+                           class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition">
+                    <i class="fas fa-search absolute left-4 text-gray-400"></i>
+                    <button class="absolute right-2 bg-primary text-white px-4 py-1.5 rounded-full hover:bg-secondary transition">
+                        Rechercher
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filter Bar -->
+            <div class="flex justify-end">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-50 focus:z-10 focus:ring-1 focus:ring-primary focus:border-primary transition">
+                        Tous
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border-t border-b border-gray-300 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:ring-primary focus:border-primary transition">
+                        <i class="fas fa-chalkboard-teacher mr-1"></i> Conférences
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border-t border-b border-gray-300 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:ring-primary focus:border-primary transition">
+                        <i class="fas fa-music mr-1"></i> Concerts
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border-t border-b border-gray-300 hover:bg-gray-50 focus:z-10 focus:ring-1 focus:ring-primary focus:border-primary transition">
+                        <i class="fas fa-utensils mr-1"></i> Gastronomie
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-50 focus:z-10 focus:ring-1 focus:ring-primary focus:border-primary transition">
+                        <i class="fas fa-running mr-1"></i> Sport
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Grid -->
+        <section>
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Événements à venir</h3>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600">Trier par :</span>
+                    <select class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:ring-primary focus:border-primary">
+                        <option>Plus proches</option>
+                        <option>Plus populaires</option>
+                        <option>Moins chers</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Event Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="../shared/images/image.png" 
+                             alt="Concert" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-music mr-1"></i> Concert
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-800">Festival de Musique Électronique</h4>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">18+</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Une nuit de musique électronique avec les meilleurs DJs internationaux.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-3">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            <span>15 Juin 2023 • 20:00</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Paris, Stade de France</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">À partir de 45€</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-secondary transition">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                             alt="Conférence" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-chalkboard-teacher mr-1"></i> Conférence
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-800">Future of AI Conference</h4>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Tout public</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Conférence sur l'avenir de l'intelligence artificielle avec des experts du domaine.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-3">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            <span>22 Juin 2023 • 09:00</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Lyon, Centre des Congrès</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">Gratuit</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-secondary transition">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                             alt="Gastronomie" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-utensils mr-1"></i> Gastronomie
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-800">Festival des Saveurs</h4>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Tout public</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Découverte des cuisines du monde avec des chefs étoilés.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-3">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            <span>30 Juin - 2 Juil 2023</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Marseille, Vieux Port</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">À partir de 25€</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-secondary transition">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                             alt="Sport" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-running mr-1"></i> Sport
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-800">Marathon International</h4>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Inscription</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Course à pied à travers la ville avec parcours de 5km, 10km et marathon complet.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-3">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            <span>9 Juillet 2023 • 08:00</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Nice, Promenade des Anglais</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">15€ - 50€</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-secondary transition">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 5 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                             alt="Concert" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-theater-masks mr-1"></i> Théâtre
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-800">Hamlet - Version Moderne</h4>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">12+</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">Une réinterprétation contemporaine du classique de Shakespeare.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-3">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            <span>12-15 Juillet 2023 • 19:30</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Toulouse, Théâtre National</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">20€ - 60€</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-secondary transition">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 6 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                             alt="Concert" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-music mr-1"></i> Concert
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-lg text-gray-800">Festival Jazz en Ville</h4>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Tout public</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">3 jours de jazz avec des artistes locaux et internationaux.</p>
+                        <div class="flex items-center text-gray-500 text-sm mb-3">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            <span>21-23 Juillet 2023</span>
+                        </div>
+                        <div class="flex items-center text-gray-500 text-sm mb-4">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Strasbourg, Place Kléber</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">Pass 3 jours: 75€</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-secondary transition">
+                                Détails
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-10">
+                <nav class="inline-flex rounded-md shadow">
+                    <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-primary font-medium">1</a>
+                    <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">2</a>
+                    <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">3</a>
+                    <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">4</a>
+                    <a href="#" class="px-4 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 rounded-r-md">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">EventSphere</h4>
+                    <p class="text-gray-400">La plateforme pour découvrir et créer des événements exceptionnels.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Événements</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Créer un événement</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Catégories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Concerts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Conférences</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sports</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Gastronomie</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-2">Abonnez-vous pour recevoir les derniers événements</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="px-3 py-2 rounded-l-md text-gray-800 w-full">
+                        <button class="bg-primary px-4 py-2 rounded-r-md hover:bg-secondary transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 EventSphere. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
