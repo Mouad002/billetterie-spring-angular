@@ -2,9 +2,11 @@ package com.example.billetteriebackend.services;
 
 import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.entities.Event;
+import com.example.billetteriebackend.entities.TicketTypeAllocation;
 import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.mappers.BilletterieMapperImpl;
 import com.example.billetteriebackend.repositories.EventRepository;
+import com.example.billetteriebackend.repositories.TicketTypeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +20,8 @@ import java.util.stream.Collectors;
 public class OrganizerServicesImpl implements OrganizerServices {
 
     private EventRepository eventRepository;
-    private BilletterieMapperImpl dtoMapper;
+    private BilletterieMapperImpl dtoMapper;;
+    private TicketTypeRepository ticketTypeRepository;
 
     @Override
     public EventDTO saveEvent(EventDTO eventDTO) {
@@ -59,5 +62,11 @@ public class OrganizerServicesImpl implements OrganizerServices {
         List<Event> events = eventRepository.findByTitleContains(keyword);
         List<EventDTO> eventDTOS = events.stream().map(event -> dtoMapper.fromEvent(event)).collect(Collectors.toList());
         return eventDTOS;
+    }
+
+    @Override
+    public TicketTypeAllocation saveTicketType(TicketTypeAllocation ticketTypeAllocation) {
+        TicketTypeAllocation savedTicketType = ticketTypeRepository.save(ticketTypeAllocation);
+        return savedTicketType;
     }
 }

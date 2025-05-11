@@ -1,21 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-interface TicketType {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  maxPerOrder: number;
-}
-
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  imageUrl: string;
-  description: string;
-}
+import {ActivatedRoute} from '@angular/router';
+import {TicketServiceService} from '../../../services/ticketServices/ticket-service.service';
+import {catchError, Observable, throwError} from 'rxjs';
+import {AppEvent} from '../../../../model/event.model';
+import {EventService} from '../../../services/event.service';
+import {TicketType} from '../../../../model/TicketType.model';
 
 interface TicketSelection {
   ticketId: string;
@@ -28,59 +17,43 @@ interface TicketSelection {
   styleUrl: './tickets-selection.component.css'
 })
 export class TicketsSelectionComponent implements OnInit{
-   event: Event = {
-    id: "evt-001",
-    title: "Summer Music Festival 2025",
-    date: "June 15, 2025",
-    time: "4:00 PM - 11:00 PM",
-    location: "Central Park, New York",
-    imageUrl: "",
-    description: "Join us for an unforgettable day of music featuring top artists from around the world. Food and drinks available for purchase."
-  };
+  ticketTypes!: TicketType[];
+  eventId!: number;
+  event: AppEvent | null = null;
+  errorMessage!: string;
+  ticketSelections: { ticketId: number, quantity: number }[] = []; // Initialize ticketSelections as an empty array
 
-  ticketTypes: TicketType[] = [
-    {
-      id: "regular",
-      name: "Regular Admission",
-      price: 49.99,
-      description: "General admission to all festival areas",
-      maxPerOrder: 8
-    },
-    {
-      id: "vip",
-      name: "VIP Package",
-      price: 149.99,
-      description: "Includes fast-track entry, reserved seating & complimentary drinks",
-      maxPerOrder: 4
-    }
-  ];
-
-  ticketSelections: TicketSelection[] = [];
-
-  constructor() { }
+  constructor(private route: ActivatedRoute, private ticketService: TicketServiceService, private eventService: EventService) {}
 
   ngOnInit(): void {
-    // Initialize ticket selections with zero quantity
-    this.ticketTypes.forEach(ticket => {
-      this.ticketSelections.push({
-        ticketId: ticket.id,
-        quantity: 0
-      });
+
+    this.route.queryParams.subscribe(params => {
+      this.eventId = +params['eventId']; // '+' converts string to number
+      console.log('Event ID:', this.eventId);
     });
+
+    // Fetch ticket types
+    this.getTicketTypes();
+
+    // Fetch event details
+    this.getEventDetails(this.eventId);
   }
 
-  getTicketCount(ticketId: string): number {
+  // Get ticket count based on ticketId
+  getTicketCount(ticketId: number): number {
     const selection = this.ticketSelections.find(s => s.ticketId === ticketId);
     return selection ? selection.quantity : 0;
   }
 
+  // Increase the ticket count, ensuring it doesn't exceed the maximum allowed
   increaseTicketCount(ticket: TicketType): void {
     const selection = this.ticketSelections.find(s => s.ticketId === ticket.id);
-    if (selection && selection.quantity < ticket.maxPerOrder) {
+    if (selection && selection.quantity < 1000) {
       selection.quantity++;
     }
   }
 
+  // Decrease the ticket count, ensuring it doesn't go below zero
   decreaseTicketCount(ticket: TicketType): void {
     const selection = this.ticketSelections.find(s => s.ticketId === ticket.id);
     if (selection && selection.quantity > 0) {
@@ -88,6 +61,7 @@ export class TicketsSelectionComponent implements OnInit{
     }
   }
 
+  // Calculate the total price for all ticket selections
   getTotalPrice(): number {
     let total = 0;
     this.ticketSelections.forEach(selection => {
@@ -97,5 +71,37 @@ export class TicketsSelectionComponent implements OnInit{
       }
     });
     return total;
+  }
+  getEventDetails(id: number = 1): void {
+    this.eventService.getEventDetails(id).pipe(
+      catchError(error => {
+        this.errorMessage = error.message;
+        return throwError(() => error);
+      })
+    ).subscribe({
+      next: data => {
+        this.event = data;
+        console.log('Event Details:', this.event); // Log the event details after it's fetched
+      },
+      error: err => console.error(err)
+    });
+  }
+  getTicketTypes() {
+    this.ticketService.getTicketTypesByEventId(this.eventId).subscribe({
+      next: (types) => {
+        this.ticketTypes = types;
+        console.log('Ticket types:', this.ticketTypes);
+        // Initialize ticket selections with zero quantity for each ticket type
+        this.ticketTypes.forEach(ticket => {
+          this.ticketSelections.push({
+            ticketId: ticket.id,
+            quantity: 0
+          });
+        });
+      },
+      error: (err) => {
+        console.error('Failed to load ticket types:', err);
+      }
+    });
   }
 }

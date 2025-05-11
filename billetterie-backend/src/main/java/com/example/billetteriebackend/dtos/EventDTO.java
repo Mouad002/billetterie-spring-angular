@@ -16,6 +16,7 @@ public class EventDTO {
     private String description;
     private String location;
     private String image;
+    private int maxTickets;
     private Category category;
 
 

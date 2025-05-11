@@ -19,6 +19,7 @@ public class Event {
     private String description;
     private String location;
     private String image;
+    private int maxTickets;
     @Enumerated(EnumType.STRING)
     private Status status;
     @Temporal(TemporalType.DATE)
@@ -27,6 +28,6 @@ public class Event {
     private Category category;
     @ManyToOne
     private Organizer organizer;
-    @OneToMany(mappedBy = "event")
-    private List<Ticket> tickets;
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TicketTypeAllocation> ticketTypeAllocations;
 }

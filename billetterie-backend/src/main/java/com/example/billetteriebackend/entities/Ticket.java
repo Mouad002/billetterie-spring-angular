@@ -12,7 +12,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class Ticket {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String seatNumber;

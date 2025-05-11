@@ -39,19 +39,6 @@ public class BilletterieBackendApplication {
 			organizerServices.saveEvent(eventDTO);
 		};
 	}
-//	@Bean
-	CommandLineRunner runner(EventRepository eventRepository) {
-		return args -> {
-			Event event = new Event();
-			event.setTitle("Salah Fati");
-			event.setDescription("Salah Fati est un joueur de football professionnel marocain");
-			event.setLocation("Casablanca");
-			event.setImage("salah.jpg");
-			event.setStatus(Status.COMPLETED);
-			event.setStartDate(new Date());
-			event.setEndDate(new Date());
-			eventRepository.save(event);
-		};
-	}
+
 
 }

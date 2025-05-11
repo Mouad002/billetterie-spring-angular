@@ -113,7 +113,7 @@
       </p>
 
       <div class="flex justify-center">
-        <button class="bg-main-orange text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 btnBuyTicket w-full" style="cursor: pointer">
+        <button routerLink="/ticket-selection" [queryParams]="{ eventId: event?.id }" class="bg-main-orange text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 btnBuyTicket w-full" style="cursor: pointer">
           Buy Tickets
         </button>
       </div>
