@@ -1,11 +1,11 @@
 export interface AppEvent {
     id:number;
-    title:String;
-    description:String;
-    location:String;
-    image:String;
+    title:string;
+    description:string;
+    location:string;
+    image:string;
     category:any;
-    status:String;
+    status:string;
     dateEvent:Date;
-
+    heure:Date;
   }

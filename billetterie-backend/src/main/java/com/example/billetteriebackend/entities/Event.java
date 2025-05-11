@@ -20,8 +20,15 @@ public class Event {
     private String description;
     private String location;
     private String image;
-    private Date dateEvent;
     private Category category;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateEvent;
+
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date heure;
 
     @Enumerated(EnumType.STRING)
     private Status status;

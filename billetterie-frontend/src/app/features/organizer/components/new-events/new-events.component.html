@@ -38,7 +38,7 @@
                   <i class="fas fa-calendar-day text-orange-500 mr-2"></i> Date
                 </label>
                 <input type="date" id="eventDate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
-                formControlName="date">
+                formControlName="dateEvent">
               </div>
 
               <!-- *********************************************************************************** -->
@@ -63,7 +63,7 @@
             </div>
 
             <!-- *********************************************************************************** -->
-             <!-- Catégorie & Capacité -->
+             <!-- Catégorie & Status -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label for="eventCategory" class="block text-gray-700 font-medium mb-2">
@@ -71,23 +71,37 @@
                 </label>
                 <select id="eventCategory" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500" formControlName="category">
                   <option value="">Choisir une catégorie</option>
-                  <option value="conference">Conférence</option>
-                  <option value="workshop">Atelier</option>
-                  <option value="meetup">Rencontre</option>
-                  <option value="concert">Concert</option>
-                  <option value="exhibition">Exposition</option>
+                  <option value="conference">CONCERT</option>
+                  <option value="workshop">SPORT</option>
+                  <option value="meetup">THEATRE</option>
+                  <option value="concert">CINEMA</option>
+                  <option value="exhibition">FESTIVAL</option>
+                  <option value="exhibition">CONFERENCE</option>
+                  <option value="exhibition">EXPOSITION</option>
+                  <option value="exhibition">ATELIER</option>
+                  <option value="exhibition">AUTRE</option>
                 </select>
               </div>
 
-              <!-- *********************************************************************************** -->
+            <!-- *********************************************************************************** -->
 
-              <div>
-                <label for="eventCapacity" class="block text-gray-700 font-medium mb-2">
-                  <i class="fas fa-users text-orange-500 mr-2"></i> Capacité
+                <!-- Status -->
+              <div class="mb-6">
+                <label for="eventStatus" class="block text-gray-700 font-medium mb-2">
+                  <i class="fas fa-check-circle text-orange-500 mr-2"></i> Statut de l'événement
                 </label>
-                <input type="number" id="eventCapacity" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500" placeholder="Ex: 150">
+                <select id="eventStatus" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500" 
+                formControlName="status">
+                  <option value="">Choisir un statut</option>
+                  <option value="planned">DRAFT</option>
+                  <option value="ongoing">PUBLISHED</option>
+                  <option value="completed">CANCELED</option>
+                  <option value="cancelled">SOLD_OUT</option>
+                  <option value="cancelled">POSTPONED</option>
+                  <option value="cancelled">COMPLETED</option>
+                </select>
               </div>
-            </div>
+            </div>             
 
             <!-- *********************************************************************************** -->
              <!-- Image -->
@@ -101,7 +115,7 @@
                   <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Cliquez</span> ou glissez-déposez</p>
                   <p class="text-xs text-gray-500">PNG, JPG (max 5MB)</p>
                 </div>image
-                <input id="eventImage" type="file" class="hidden" formControlName="image"/>
+                <input id="eventImage" type="file" class="hidden"/>
               </label>
             </div>
 
@@ -121,6 +135,3 @@
     </div>
   </div>
 </body>
-
-
-

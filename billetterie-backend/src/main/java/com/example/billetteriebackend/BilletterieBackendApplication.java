@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.sql.Time;
 import java.util.Date;
 
 @SpringBootApplication
@@ -30,6 +31,7 @@ public class BilletterieBackendApplication {
 			eventDTO.setImage("1.jpg");
 			eventDTO.setLocation("Casablanca");
 			eventDTO.setDateEvent(new Date());
+			eventDTO.setHeure(new Time(new Date().getTime()));
 			eventDTO.setStatus(Status.COMPLETED);
 
 			EventDTO event1 = new EventDTO();
@@ -39,6 +41,7 @@ public class BilletterieBackendApplication {
 			event1.setImage("2.jpg"); // aucune image pour le moment
 			event1.setLocation("Rabat, Technopark");
 			event1.setDateEvent(new Date());
+			event1.setHeure(new Time(new Date().getTime()));
 			event1.setStatus(Status.CANCELED);
 
 			EventDTO event2 = new EventDTO();
@@ -48,6 +51,7 @@ public class BilletterieBackendApplication {
 			event2.setImage("3.jpg");
 			event2.setLocation("Fès, Campus INPT");
 			event2.setDateEvent(new Date());
+			event2.setHeure(new Time(new Date().getTime()));
 			event2.setStatus(Status.CANCELED);
 
 			EventDTO event3 = new EventDTO();
@@ -57,6 +61,7 @@ public class BilletterieBackendApplication {
 			event3.setImage("4.jpg");
 			event3.setLocation("Marrakech, Galerie Riad");
 			event3.setDateEvent(new Date());
+			event3.setHeure(new Time(new Date().getTime()));
 			event3.setStatus(Status.POSTPONED);
 
 

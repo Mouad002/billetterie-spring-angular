@@ -26,12 +26,12 @@ export class NewEventsComponent implements OnInit{
       image : this.fb.control(null), 
       category : this.fb.control(null), 
       status : this.fb.control(null), 
-      date : this.fb.control(null), 
+      dateEvent : this.fb.control(null), 
       heure : this.fb.control(null)
     })
   }
 
-   handleSaveEvent(){
+  handleSaveEvent(){
     if(this.newEventFormGroup.invalid){
       Swal.fire({
         icon: "warning",
