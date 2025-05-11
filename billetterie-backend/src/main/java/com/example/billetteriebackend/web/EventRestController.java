@@ -6,11 +6,11 @@ import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.services.OrganizerServices;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("*")
 public class EventRestController {
 
     private OrganizerServices organizerServices;
@@ -41,4 +41,6 @@ public class EventRestController {
     public List<EventDTO> searchEvent(@RequestParam(name = "keyword", defaultValue = "") String keyword){
         return organizerServices.searchEvents(keyword);
     }
+
+
 }

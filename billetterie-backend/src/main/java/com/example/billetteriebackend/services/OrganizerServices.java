@@ -1,5 +1,6 @@
 package com.example.billetteriebackend.services;
 
+import com.example.billetteriebackend.dtos.CategoryDTO;
 import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.exceptions.EventNotFoundException;
 
@@ -13,4 +14,5 @@ public interface OrganizerServices {
     EventDTO updateEvent(EventDTO eventDTO);
     void deleteEvents(Long id);
     List<EventDTO> searchEvents(String keyword);
+    CategoryDTO saveCategory(CategoryDTO categoryDTO);
 }

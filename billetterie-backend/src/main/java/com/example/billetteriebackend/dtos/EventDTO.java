@@ -16,19 +16,9 @@ public class EventDTO {
     private String description;
     private String location;
     private String image;
-    private Category category;
+    private CategoryDTO category;
+    private Date DateEvent;
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
-
-
-
 }

@@ -1,8 +1,10 @@
 package com.example.billetteriebackend.mappers;
 
+import com.example.billetteriebackend.dtos.CategoryDTO;
 import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.dtos.OrganizerDTO;
 import com.example.billetteriebackend.dtos.UserDTO;
+import com.example.billetteriebackend.entities.Category;
 import com.example.billetteriebackend.entities.Event;
 import com.example.billetteriebackend.entities.Organizer;
 import com.example.billetteriebackend.entities.User;
@@ -41,4 +43,15 @@ public class BilletterieMapperImpl {
 
     // *****************************************************************************
 
+    public CategoryDTO fromCategory(Category category) {
+        CategoryDTO categoryDTO = new CategoryDTO();
+        BeanUtils.copyProperties(category, categoryDTO);
+        return categoryDTO;
+    }
+
+    public Category fromCategoryDTO(CategoryDTO categoryDTO) {
+        Category category = new Category();
+        BeanUtils.copyProperties(categoryDTO, category);
+        return category;
+    }
 }

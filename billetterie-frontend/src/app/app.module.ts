@@ -7,6 +7,10 @@ import { MyEventsComponent } from './features/organizer/components/my-events/my-
 import { NewEventsComponent } from './features/organizer/components/new-events/new-events.component';
 import { EventStatisticsComponent } from './features/organizer/components/event-statistics/event-statistics.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UpdateEventsComponent } from './features/organizer/components/update-events/update-events.component';
+import { StatisticsComponent } from './features/organizer/components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +19,14 @@ import { HeaderComponent } from './shared/components/header/header.component';
     NewEventsComponent,
     EventStatisticsComponent,
     HeaderComponent,
+    UpdateEventsComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    ReactiveFormsModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
