@@ -27,5 +27,9 @@ export class EventsService {
     return this.http.get<AppEvent>(`http://localhost:8085/events/${id}`);
   }
 
+  updateEvent(id : number, event : AppEvent) : Observable<AppEvent>{
+    return this.http.put<AppEvent>(`http://localhost:8085/events/${id}`, event);
+  }
+
 
 }

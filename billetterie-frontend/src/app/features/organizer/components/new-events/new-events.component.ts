@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventsService } from '../../services/events.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -20,15 +20,15 @@ export class NewEventsComponent implements OnInit{
 
   ngOnInit(): void {
     this.newEventFormGroup = this.fb.group({
-      title : this.fb.control(null),
-      description : this.fb.control(null),
-      location : this.fb.control(null), 
-      image : this.fb.control(null), 
-      category : this.fb.control(null), 
-      status : this.fb.control(null), 
-      dateEvent : this.fb.control(null), 
-      heure : this.fb.control(null)
-    })
+    title: [null, Validators.required],
+    description: [null, Validators.required],
+    location: [null, Validators.required],
+    image: ["1.jpg"],
+    category: [null, Validators.required],
+    status: [null, Validators.required],
+    dateEvent: [null, Validators.required],
+    heure: [null, Validators.required]
+    });
   }
 
   handleSaveEvent(){

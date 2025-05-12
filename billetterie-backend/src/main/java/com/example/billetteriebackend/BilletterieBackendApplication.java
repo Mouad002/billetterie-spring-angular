@@ -65,8 +65,6 @@ public class BilletterieBackendApplication {
 			event3.setStatus(Status.POSTPONED);
 
 
-
-
 			organizerServices.saveEvent(eventDTO);
 			organizerServices.saveEvent(event1);
 			organizerServices.saveEvent(event2);

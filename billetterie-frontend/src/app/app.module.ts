@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
 import { EventDetailsComponent } from './features/events/event-details/event-details.component';
 import { TicketsSelectionComponent } from './features/events/tickets-selection/tickets-selection.component';
+import { UpdateEventsComponent } from './features/organizer/components/update-events/update-events.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TicketsSelectionComponent } from './features/events/tickets-selection/t
     EventStatisticsComponent,
     HeaderComponent,
     EventDetailsComponent, 
-    TicketsSelectionComponent
+    TicketsSelectionComponent,
+    UpdateEventsComponent
   ],
   imports: [
     BrowserModule,

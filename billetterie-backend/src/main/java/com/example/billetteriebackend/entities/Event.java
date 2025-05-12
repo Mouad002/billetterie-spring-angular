@@ -1,5 +1,6 @@
 package com.example.billetteriebackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,14 +21,14 @@ public class Event {
     private String description;
     private String location;
     private String image;
+
+    @Enumerated(EnumType.STRING)
     private Category category;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateEvent;
 
-    @Temporal(TemporalType.TIME)
-    @DateTimeFormat(pattern = "HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private Date heure;
 
     @Enumerated(EnumType.STRING)

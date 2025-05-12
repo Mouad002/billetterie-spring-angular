@@ -11,7 +11,7 @@ import { EventDetailsComponent } from './features/events/event-details/event-det
 const routes: Routes = [
   {path : "my-events", component : MyEventsComponent}, 
   {path : "new-event", component : NewEventsComponent},
-  {path : "update-event", component : UpdateEventsComponent},
+  {path : 'update-event/:id', component : UpdateEventsComponent},
   {path : "event-statistics", component : EventStatisticsComponent},
   { path:"events", component: EventsComponent},
   {path:"ticket-selection", component: TicketsSelectionComponent},

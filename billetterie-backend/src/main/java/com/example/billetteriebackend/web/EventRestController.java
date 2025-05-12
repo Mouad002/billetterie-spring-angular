@@ -32,7 +32,8 @@ public class EventRestController {
     }
 
     @PutMapping("/events/{eventId}")
-    public EventDTO updateEvent(@PathVariable Long eventId,@RequestBody EventDTO eventDTO){
+    public EventDTO updateEvent(@PathVariable Long eventId, @RequestBody EventDTO eventDTO) {
+        System.out.println("EventDTO reçu : " + eventDTO); // debug
         eventDTO.setId(eventId);
         return organizerServices.updateEvent(eventDTO);
     }

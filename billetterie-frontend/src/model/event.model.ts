@@ -4,8 +4,8 @@ export interface AppEvent {
     description:string;
     location:string;
     image:string;
-    category:any;
+    category:string;
     status:string;
-    dateEvent:Date;
-    heure:Date;
+    dateEvent:string;
+    heure:string;
   }
