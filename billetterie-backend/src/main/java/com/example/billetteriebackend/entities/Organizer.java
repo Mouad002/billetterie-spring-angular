@@ -17,6 +17,6 @@ import java.util.List;
 @DiscriminatorValue("ORGANIZER")
 public class Organizer extends User {
 
-    @OneToMany(mappedBy = "organizer")
+    @OneToMany(mappedBy = "organizer", fetch = FetchType.LAZY)
     private List<Event> events;
 }

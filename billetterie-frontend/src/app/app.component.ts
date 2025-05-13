@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LayoutComponent } from '../app/features/admin/components/layout/layout.component';
+import { HeaderComponent } from '../app/shared/components/header/header.component';
 
 @Component({
   selector: 'app-root',

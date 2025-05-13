@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.List;
 
@@ -12,7 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @DiscriminatorColumn(name = "TYPE", length = 16, discriminatorType = DiscriminatorType.STRING)
-public abstract class User {
+public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +25,9 @@ public abstract class User {
     private String email;
     private String tel;
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private UserStatus userStatus = UserStatus.ACTIVE;
+
+    @ManyToMany(mappedBy = "users")
     private List<Role> roles;
 }

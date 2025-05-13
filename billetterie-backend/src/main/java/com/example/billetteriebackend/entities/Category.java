@@ -1,22 +1,13 @@
 package com.example.billetteriebackend.entities;
 
-
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
-
-@Entity
-@Data
-@AllArgsConstructor @NoArgsConstructor
-public class Category {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-
-    @OneToMany(mappedBy = "category")
-    private List<Event> events;
+public enum Category {
+    CONCERT,
+    SPORT,
+    THEATRE,
+    CINEMA,
+    FESTIVAL,
+    CONFERENCE,
+    EXPOSITION,
+    ATELIER,
+    AUTRE
 }

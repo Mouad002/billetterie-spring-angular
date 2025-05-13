@@ -1,9 +1,13 @@
 package com.example.billetteriebackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -22,18 +26,18 @@ public class Event {
     private String image;
 
     @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date dateEvent;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private Date heure;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
-
-    @ManyToOne
-    private Category category;
     @ManyToOne
     private Organizer organizer;
     @OneToMany(mappedBy = "event")
