@@ -8,7 +8,9 @@ import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.exceptions.StringToEnumConversionException;
 import com.example.billetteriebackend.helpers.ResponseApi;
 import com.example.billetteriebackend.helpers.StringToEnumConverter;
+import com.example.billetteriebackend.mappers.BilletterieMapperImpl;
 import com.example.billetteriebackend.mappers.EventMapper;
+import com.example.billetteriebackend.mappers.EventsMapper;
 import com.example.billetteriebackend.repositories.EventRepository;
 import com.example.billetteriebackend.repositories.TicketRepository;
 import lombok.AllArgsConstructor;
@@ -24,17 +26,32 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @AllArgsConstructor
-public class EventServiceImp implements EventService {
+public class EventServiceImpl implements EventService {
     private EventRepository eventRepository;
-    private EventMapper eventMapper;
     private TicketRepository ticketRepository;
+    private EventMapper eventMapper;
+
+    @Override
+    public List<EventDTO> listEvents() {
+
+        List<Event> events = eventRepository.findAll();
+        List<EventDTO> eventDTOS = events.stream().map(event -> eventMapper.fromEvent(event)).collect(Collectors.toList());
+        return eventDTOS;
+    }
+
+    @Override
+    public EventDTO getEvent(Long id) throws EventNotFoundException {
+        Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Event not found"));
+        return eventMapper.fromEvent(event);
+    }
+
 
     @Override
     public ResponseApi<EventForValidationDTO> getEventsForValidation(int page, int size) {
         Page<Event> eventPage = eventRepository.findAll(PageRequest.of(page, size));
         ResponseApi<EventForValidationDTO> response = new ResponseApi<EventForValidationDTO>();
         BeanUtils.copyProperties(eventPage, response);
-        response.setContent(eventPage.getContent().stream().map(event -> eventMapper.fromEvent(event)).collect(Collectors.toList()));
+        response.setContent(eventPage.getContent().stream().map(event -> eventMapper.eventForValidationDtoFromEvent(event)).collect(Collectors.toList()));
         return response;
     }
 
@@ -109,7 +126,7 @@ public class EventServiceImp implements EventService {
 
     @Override
     public ResponseApi<EventForManagingDTO> getEventsForManaging(int page, int size) {
-        Page<Event> eventsPage = eventRepository.findAllByOrderByStartDateDesc(PageRequest.of(page, size));
+        Page<Event> eventsPage = eventRepository.findAllByOrderByDateEventDesc(PageRequest.of(page, size));
         List<EventForManagingDTO> content = eventsPage.stream().map(event -> eventMapper.eventForManagingDtofromEvent(event)).collect(Collectors.toList());
         ResponseApi<EventForManagingDTO> response = new ResponseApi<EventForManagingDTO>();
         BeanUtils.copyProperties(eventsPage, response);

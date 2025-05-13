@@ -1,6 +1,8 @@
 package com.example.billetteriebackend.dtos;
 
+import com.example.billetteriebackend.entities.Category;
 import com.example.billetteriebackend.entities.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,14 +19,14 @@ public class EventDTO {
     private String image;
 
     @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date dateEvent;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private Date heure;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
-
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
-
 }

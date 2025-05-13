@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EventMapper {
-    public EventForValidationDTO fromEvent(Event event) {
+    public EventForValidationDTO eventForValidationDtoFromEvent(Event event) {
         EventForValidationDTO eventForValidationDTO = new EventForValidationDTO();
         BeanUtils.copyProperties(event, eventForValidationDTO);
         eventForValidationDTO.setCategory(event.getCategory().toString());
@@ -29,5 +29,18 @@ public class EventMapper {
         eventForManagingDTO.setCategory(event.getCategory().toString());
         eventForManagingDTO.setOrganizer(event.getOrganizer().getFullName());
         return eventForManagingDTO;
+    }
+
+
+    public EventDTO fromEvent(Event event) {
+        EventDTO eventDTO=new EventDTO();
+        BeanUtils.copyProperties(event,eventDTO);
+        return  eventDTO;
+    }
+
+    public Event fromEventDTO(EventDTO eventDTO){
+        Event event=new Event();
+        BeanUtils.copyProperties(eventDTO,event);
+        return  event;
     }
 }

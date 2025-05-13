@@ -16,8 +16,8 @@ public class EventForManagingDTO {
 
     private Status status;
 
-    private Date startDate;
-    private Date endDate;
+    private Date dateEvent;
+    private Date heure;
 
     private String category;
 

@@ -1,9 +1,11 @@
 package com.example.billetteriebackend;
 
+import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.entities.*;
 import com.example.billetteriebackend.repositories.EventRepository;
 import com.example.billetteriebackend.repositories.OrganizerRepository;
 import com.example.billetteriebackend.repositories.TicketRepository;
+import com.example.billetteriebackend.services.OrganizerServices;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,8 +20,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import java.sql.Time;
+import java.util.Date;
+
 @SpringBootApplication
-@EnableJpaAuditing
 public class BilletterieBackendApplication {
 	private final Random random = new Random();
 
@@ -28,7 +32,7 @@ public class BilletterieBackendApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(OrganizerRepository organizerRepository, EventRepository eventRepository, TicketRepository ticketRepository) {
+	CommandLineRunner adminFakeDataInitializer(OrganizerRepository organizerRepository, EventRepository eventRepository, TicketRepository ticketRepository) {
 		return args -> {
 //			Organizer organizer = new Organizer();
 //			organizer.setFullName("John Doe");
@@ -129,14 +133,13 @@ public class BilletterieBackendApplication {
 			ticket1.setReservationDate(new Date()); // Current date
 			ticket1.setEvent(event1); // Assume event1 exists
 
-			Ticket ticket2 = new Ticket(
-					null, // ID will be auto-generated
-					"VIP-3",
-					149.99,
-					Date.from(LocalDate.of(2023, 12, 25).atStartOfDay(ZoneId.systemDefault()).toInstant()),
-					event2, // Existing Event object
-					organizer   // Existing User object
-			);
+			Ticket ticket2 = Ticket.builder()
+					.seatNumber("VIP-3")
+					.price(149.99) // Discounted price
+					.reservationDate(Date.from(LocalDate.of(2023, 12, 25).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+					.event(event2) // Existing Event
+					.user(organizer)
+					.build();
 
 			Ticket ticket3 = Ticket.builder()
 					.seatNumber("B7")
@@ -167,6 +170,59 @@ public class BilletterieBackendApplication {
 
 	private Category getRandomCategory(List<Category> categories) {
 		return categories.get(random.nextInt(categories.size()));
+	}
+
+//    @Bean
+	CommandLineRunner commandLineRunner(OrganizerServices organizerServices) {
+		return args -> {
+
+			// 2. Créer un événement
+			EventDTO eventDTO = new EventDTO();
+			eventDTO.setTitle("Spring Boot Conf");
+			eventDTO.setDescription("Conférence autour de Spring Boot et du développement Java");
+			eventDTO.setCategory(Category.SPORT);
+			eventDTO.setImage("1.jpg");
+			eventDTO.setLocation("Casablanca");
+			eventDTO.setDateEvent(new Date());
+			eventDTO.setHeure(new Time(new Date().getTime()));
+			eventDTO.setStatus(Status.COMPLETED);
+
+			EventDTO event1 = new EventDTO();
+			event1.setTitle("Dev Meetup 2025");
+			event1.setDescription("Rencontre mensuelle des développeurs pour partager les nouveautés tech.");
+			event1.setCategory(Category.CONFERENCE);
+			event1.setImage("2.jpg"); // aucune image pour le moment
+			event1.setLocation("Rabat, Technopark");
+			event1.setDateEvent(new Date());
+			event1.setHeure(new Time(new Date().getTime()));
+			event1.setStatus(Status.CANCELED);
+
+			EventDTO event2 = new EventDTO();
+			event2.setTitle("Atelier UX Design");
+			event2.setDescription("Atelier interactif pour apprendre les bases de l’expérience utilisateur.");
+			event2.setCategory(Category.THEATRE);
+			event2.setImage("3.jpg");
+			event2.setLocation("Fès, Campus INPT");
+			event2.setDateEvent(new Date());
+			event2.setHeure(new Time(new Date().getTime()));
+			event2.setStatus(Status.CANCELED);
+
+			EventDTO event3 = new EventDTO();
+			event3.setTitle("Exposition Art Numérique");
+			event3.setDescription("Une expo mettant en avant les artistes numériques marocains.");
+			event3.setCategory(Category.THEATRE);
+			event3.setImage("4.jpg");
+			event3.setLocation("Marrakech, Galerie Riad");
+			event3.setDateEvent(new Date());
+			event3.setHeure(new Time(new Date().getTime()));
+			event3.setStatus(Status.POSTPONED);
+
+
+			organizerServices.saveEvent(eventDTO);
+			organizerServices.saveEvent(event1);
+			organizerServices.saveEvent(event2);
+			organizerServices.saveEvent(event3);
+		};
 	}
 
 

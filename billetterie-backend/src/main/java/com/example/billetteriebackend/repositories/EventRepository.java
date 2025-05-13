@@ -21,5 +21,5 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("update Event e set e.status = :s where e.id = :id")
     void updateEventStatus(@Param("id") Long id, @Param("s") Status status);
 
-    Page<Event> findAllByOrderByStartDateDesc(PageRequest p);
+    Page<Event> findAllByOrderByDateEventDesc(PageRequest p);
 }

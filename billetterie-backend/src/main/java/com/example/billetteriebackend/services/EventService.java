@@ -5,7 +5,12 @@ import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.exceptions.StringToEnumConversionException;
 import com.example.billetteriebackend.helpers.ResponseApi;
 
+import java.util.List;
+
 public interface EventService {
+    List<EventDTO> listEvents();
+    EventDTO getEvent(Long id) throws EventNotFoundException;
+
     ResponseApi<EventForValidationDTO> getEventsForValidation(int page, int size);
 
     ResponseMessageDTO changeEventStatus(ChangeEventStatusRequestDTO e);

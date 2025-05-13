@@ -14,8 +14,8 @@ public class EventForValidationDTO {
     private String location;
     private String image;
     private Status status;
-    private Date startDate;
-    private Date endDate;
+    private Date dateEvent;
+    private Date heure;
     private String category;
     private String organizer;
 

@@ -1,0 +1,86 @@
+<div class="max-w-3xl mx-auto p-4">
+  <!-- Event Section -->
+  <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden mb-6">
+    <div class="relative h-48 bg-gray-200">
+      <img  src="salah.jpg" alt="salah.jpg" class="w-full h-full object-cover absolute inset-0">
+      <div *ngIf="!event" class="flex items-center justify-center h-full text-gray-500">
+        No Image Available
+      </div>
+    </div>
+    <div class="p-5">
+      <h1 class="text-2xl font-bold text-gray-800">{{ event?.title }}</h1>
+      <div class="flex flex-wrap items-center mt-2 text-gray-600">
+        <div class="mr-6 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 main-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span>{{ event?.dateEvent }}</span>
+        </div>
+        <div class="mr-6 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 main-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{{ event?.dateEvent }}</span>
+        </div>
+        <div class="flex items-center mt-2 sm:mt-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 main-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>{{ event?.location }}</span>
+        </div>
+      </div>
+      <p class="mt-4 text-gray-600">{{ event?.description }}</p>
+    </div>
+  </div>
+
+  <!-- Tickets Section -->
+  <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+    <div class="bg-gray-50 px-5 py-3 border-b">
+      <h2 class="text-lg font-medium text-gray-800">Select Tickets</h2>
+    </div>
+
+    <div class="divide-y divide-gray-200 mb-4">
+      <div *ngFor="let ticket of ticketTypes" class="px-5 py-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          <div class="mb-2 sm:mb-0">
+            <h3 class="text-base font-medium text-gray-800">{{ ticket.ticketType }}</h3>
+            <p class="text-sm text-gray-500">{{ ticket.ticketType }}</p>
+          </div>
+          <div class="flex items-center">
+            <div class="flex items-center border rounded-md bg-main-orange text-white">
+              <button
+                (click)="decreaseTicketCount(ticket)"
+                [disabled]="getTicketCount(ticket.id) === 0"
+                class="px-3 py-1 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                </svg>
+              </button>
+              <span class="px-4 py-1">{{ getTicketCount(ticket.id) }}</span>
+              <button
+                (click)="increaseTicketCount(ticket)"
+                [disabled]="getTicketCount(ticket.id) >= 1000"
+                class="px-3 py-1 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </button>
+            </div>
+            <div class="ml-4 w-20 text-right">
+              <span class="font-medium">${{ ticket.price.toFixed(2) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="bg-main-orange px-5 py-4 mt-4 shadow-md btnBuyTicket" style="cursor: pointer; border-radius: 20px">
+    <a href="https://tailwindcss.com/docs/colors" class="flex justify-between items-center">
+      <span class="text-lg font-bold text-white">Next</span>
+      <span class="text-xl font-bold text-white">${{ getTotalPrice().toFixed(2) }}</span>
+    </a>
+  </div>
+</div>

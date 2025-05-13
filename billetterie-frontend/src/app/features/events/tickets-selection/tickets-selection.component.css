@@ -1,0 +1,23 @@
+.ticket-count-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ticket-counter {
+  transition: all 0.2s ease;
+}
+
+.ticket-counter:hover {
+  background-color: #f3f4f6;
+}
+.main-orange {
+  color: #FF6B00;
+}
+.bg-main-orange {
+  background-color: #FF6B00;
+}
+.btnBuyTicket:hover {
+  background-color: #d14201;
+  color: white;
+  font-weight: bold;
+}
