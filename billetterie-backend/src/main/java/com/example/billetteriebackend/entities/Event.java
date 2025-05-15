@@ -42,4 +42,6 @@ public class Event {
     private Organizer organizer;
     @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;
+
+    private  double price;
 }

@@ -165,7 +165,9 @@ public class BilletterieBackendApplication {
 		event.setHeure(heureEvent);
 		event.setCategory(category);
 		event.setOrganizer(organizer);
-		return event;
+        event.setPrice(Math.round((50 + Math.random() * 200) * 100.0) / 100.0);
+
+        return event;
 	}
 
 	private Category getRandomCategory(List<Category> categories) {

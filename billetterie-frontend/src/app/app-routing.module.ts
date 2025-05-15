@@ -18,7 +18,7 @@ const routes: Routes = [
   {path : "new-event", component : NewEventsComponent},
   {path : 'update-event/:id', component : UpdateEventsComponent},
   {path : "event-statistics", component : EventStatisticsComponent},
-  { path:"events", component: EventsComponent},
+  { path:"home", component: EventsComponent},
   {path:"ticket-selection", component: TicketsSelectionComponent},
   {path : "events-details", component : EventDetailsComponent},
   {path: 'admin-panel', component: LayoutComponent, 

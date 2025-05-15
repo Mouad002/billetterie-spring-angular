@@ -26,7 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +59,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonModule,
     MatMenuModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CommonModule,
+    HttpClientModule
+    
   ],
   providers: [
     provideHttpClient()

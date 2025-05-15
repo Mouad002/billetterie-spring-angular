@@ -1,6 +1,7 @@
 package com.example.billetteriebackend.services;
 
 import com.example.billetteriebackend.dtos.*;
+import com.example.billetteriebackend.entities.Category;
 import com.example.billetteriebackend.entities.Event;
 import com.example.billetteriebackend.entities.Status;
 import com.example.billetteriebackend.entities.Ticket;
@@ -17,6 +18,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +32,7 @@ public class EventServiceImpl implements EventService {
     private EventRepository eventRepository;
     private TicketRepository ticketRepository;
     private EventMapper eventMapper;
+
 
     @Override
     public List<EventDTO> listEvents() {
@@ -132,5 +135,65 @@ public class EventServiceImpl implements EventService {
         BeanUtils.copyProperties(eventsPage, response);
         response.setContent(content);
         return response;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public Page<EventDTO> listEvents(Pageable pageable) {
+        Page<Event> eventsPage = eventRepository.findAll(pageable);
+        return eventsPage.map(eventMapper::fromEvent);
+    }
+
+
+
+
+
+
+    @Override
+    public EventDTO saveEvent(EventDTO customerDTO) {
+
+        Event customer=eventMapper.fromEventDTO(customerDTO);
+        Event savedCustomer = eventRepository.save(customer);
+        return eventMapper.fromEvent(savedCustomer);
+    }
+
+
+
+
+
+
+
+    @Override
+    public Page<EventDTO> searchEvents(String keyword,Pageable pageable) {
+        Page<Event> events=eventRepository.findByTitleContains(keyword,pageable);
+        return events.map(eventMapper::fromEvent);
+    }
+
+
+
+
+    @Override
+    public List<EventDTO> getEventsByCategory(String categoryStr) {
+        Category category;
+        try {
+            category = Category.valueOf(categoryStr.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Catégorie invalide : " + categoryStr);
+        }
+
+        List<Event> events = eventRepository.findByCategory(category);
+        return events.stream().map(eventMapper::fromEvent).collect(Collectors.toList());
     }
 }
