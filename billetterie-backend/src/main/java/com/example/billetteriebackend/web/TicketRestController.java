@@ -11,18 +11,18 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class TicketRestController {
-//    private OrganizerServices organizerServices;
-//    private TicketService ticketService;
-//    @PostMapping("/ticketType")
-//    public TicketTypeAllocation saveTicketType(@RequestBody TicketTypeAllocation ticketTypeAllocation){
-//        return organizerServices.saveTicketType(ticketTypeAllocation);
-//    }
-//    @GetMapping("/ticketTypeList")
-//    List<TicketTypeAllocation> listTicketTypes(){
-//        return ticketService.listTicketTypes();
-//    }
-//    @GetMapping("/ticketTypeList/{eventId}")
-//    List<TicketTypeAllocation> listTicketTypesByEventID(@PathVariable Long eventId){
-//        return ticketService.listTicketTypesByEventID(eventId);
-//    }
+    private OrganizerServices organizerServices;
+    private TicketService ticketService;
+    @PostMapping("/ticketType")
+    public TicketTypeAllocation saveTicketType(@RequestBody TicketTypeAllocation ticketTypeAllocation){
+        return organizerServices.saveTicketType(ticketTypeAllocation);
+    }
+    @GetMapping("/ticketTypeList")
+    List<TicketTypeAllocation> listTicketTypes(){
+        return ticketService.listTicketTypes();
+    }
+    @GetMapping("/ticketTypeList/{eventId}")
+    List<TicketTypeAllocation> listTicketTypesByEventID(@PathVariable Long eventId){
+        return ticketService.listTicketTypesByEventID(eventId);
+    }
 }

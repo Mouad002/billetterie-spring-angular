@@ -13,5 +13,6 @@ export class TicketServiceService {
   getTicketTypesByEventId(eventId: number): Observable<TicketType[]> {
     return this.http.get<TicketType[]>(`${environment.backendHost}/ticketTypeList/${eventId}`);
   }
+  
 
 }
