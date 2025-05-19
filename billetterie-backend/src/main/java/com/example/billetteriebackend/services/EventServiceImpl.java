@@ -151,8 +151,9 @@ public class EventServiceImpl implements EventService {
 
 
     @Override
-    public Page<EventDTO> listEvents(Pageable pageable) {
-        Page<Event> eventsPage = eventRepository.findAll(pageable);
+    public Page<EventDTO> listEvents(String status,Pageable pageable) {
+        Status s =Status.valueOf(status);
+        Page<Event> eventsPage = eventRepository.findAllByStatus(s,pageable);
         return eventsPage.map(eventMapper::fromEvent);
     }
 

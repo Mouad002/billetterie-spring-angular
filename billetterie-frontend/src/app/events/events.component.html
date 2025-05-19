@@ -1,202 +1,233 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Événements - Plateforme</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4f46e5',
-                        secondary: '#6366f1',
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Événements - Plateforme</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
 </head>
 <body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-calendar-alt text-primary text-2xl"></i>
-                <h1 class="text-xl font-bold text-gray-800">EventSphere</h1>
-            </div>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#" class="text-gray-600 hover:text-primary transition">Accueil</a>
-                <a href="#" class="text-gray-600 hover:text-primary transition">Événements</a>
-                <a href="#" class="text-gray-600 hover:text-primary transition">Créer</a>
-                <a href="#" class="text-gray-600 hover:text-primary transition">Profil</a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                <button class="md:hidden text-gray-600">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-                <div class="relative">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profil" class="w-8 h-8 rounded-full cursor-pointer">
-                </div>
-            </div>
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-calendar-alt text-[#f97316] text-2xl"></i>
+        <h1 class="text-xl font-bold text-black">EventSphere</h1>
+      </div>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#" class="text-gray-600 hover:text-[#f97316] transition">Accueil</a>
+        <a href="#" class="text-gray-600 hover:text-[#f97316] transition">Événements</a>
+        <a href="#" class="text-gray-600 hover:text-[#f97316] transition">Créer</a>
+        <a href="#" class="text-gray-600 hover:text-[#f97316] transition">Profil</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button class="md:hidden text-gray-600">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+        <div class="relative">
+          <img
+            src="https://randomuser.me/api/portraits/women/44.jpg"
+            alt="Profil"
+            class="w-8 h-8 rounded-full cursor-pointer"
+          />
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <!-- Hero Section with Search -->
-        <section class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">Découvrez des événements passionnants</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Trouvez des événements près de chez vous ou explorez des conférences virtuelles</p>
-            </div>
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Hero Section with Search -->
+    <section class="mb-12">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-black mb-2">
+          Découvrez des événements passionnants
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Trouvez des événements près de chez vous ou explorez des conférences
+          virtuelles
+        </p>
+      </div>
 
-           <div class="max-w-3xl mx-auto relative mb-6" *ngIf="searchFormGroup">
-    <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchEvents(0,1)">
-        <div class="relative flex items-center">
-            <input  formControlName="keyword" type="text" name="q" placeholder="Rechercher des événements..."
-                   class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition" />
-            <i class="fas fa-search absolute left-4 text-gray-400"></i>
-            <button type="submit"
-                    class="absolute right-2 bg-primary text-white px-4 py-1.5 rounded-full hover:bg-secondary transition">
-                Rechercher
+      <div class="max-w-3xl mx-auto relative mb-6" *ngIf="searchFormGroup">
+        <form
+          [formGroup]="searchFormGroup"
+          (ngSubmit)="handleSearchEvents(currentPage,pageSize)"
+        >
+          <div class="relative flex items-center">
+            <input
+              formControlName="keyword"
+              type="text"
+              name="q"
+              placeholder="Rechercher des événements..."
+              class="w-full pl-12 pr-4 py-3 border border-gray-400 rounded-full shadow-sm focus:ring-2 focus:ring-[#f97316] focus:border-[#f97316] transition"
+            />
+            <i class="fas fa-search absolute left-4 text-gray-500"></i>
+            <button
+              type="submit"
+              class="absolute right-2 bg-[#f97316] text-white px-4 py-1.5 rounded-full hover:bg-[#fb7c24] transition"
+            >
+              Rechercher
             </button>
-        </div>
-    </form>
-</div>
+          </div>
+        </form>
+      </div>
 
-
-            <!-- Filtres par catégorie -->
-<div class="flex justify-end mb-8">
-  <div class="inline-flex rounded-md shadow-sm flex-wrap gap-2">
-    <button *ngFor="let cat of categories"
+      <!-- Filtres par catégorie -->
+      <div class="flex justify-end mb-8">
+        <div class="inline-flex rounded-md shadow-sm flex-wrap gap-2">
+          <button
+            *ngFor="let cat of categories"
             (click)="handleSearchEventsCat(cat)"
-            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 focus:ring-1 focus:ring-primary transition">
-      {{ cat }}
-    </button>
-  </div>
-</div>
-
-        </section>
-
-        <!-- Events Grid -->
-        <section >
-            
-
-            <div *ngIf="events"  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Event Card 1 -->
-                <div *ngFor="let e of events  " class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                    <div class="relative">
-                        <img [src]="e.image" 
-                             [alt]="e.category" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded-full">
-                            <i class="fas fa-music mr-1"></i> {{e.category}}
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="font-bold text-lg text-gray-800">{{e.title}}</h4>
-                            
-                        </div>
-                        <p class="text-gray-600 text-sm mb-3">{{e.description}}</p>
-                        <div class="flex items-center text-gray-500 text-sm mb-3">
-                            <i class="fas fa-calendar-day mr-2"></i>
-                            <span>{{e.dateEvent}} </span>
-                        </div>
-                        <div class="flex items-center text-gray-500 text-sm mb-4">
-                            <i class="fas fa-map-marker-alt mr-2"></i>
-                            <span>{{e.location}}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-primary">À partir de {{e.price}} DH</span>
-                            <button class="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-secondary transition">
-                                Détails
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- Pagination -->
-<div class="flex justify-center mt-10" *ngIf="totalPages > 1">
-  <nav class="inline-flex rounded-md shadow">
-    
-    <!-- Previous Button -->
-    <button
-      class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50"
-      [disabled]="currentPage === 0"
-      (click)="handleSearchEvents(currentPage - 1, pageSize)">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-
-    <!-- Page Buttons -->
-    <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
-      <button
-        class="px-4 py-2 border-t border-b border-gray-300 bg-white"
-        [ngClass]="{ 'text-primary font-bold': currentPage === i, 'text-gray-500 hover:bg-gray-50': currentPage !== i }"
-        (click)="handleSearchEvents(i, pageSize)">
-        {{ i + 1 }}
-      </button>
-    </ng-container>
-
-    <!-- Next Button -->
-    <button
-      class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50"
-      [disabled]="currentPage >= totalPages - 1"
-      (click)="handleSearchEvents(currentPage + 1, pageSize)">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-
-  </nav>
-</div>
-
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">EventSphere</h4>
-                    <p class="text-gray-400">La plateforme pour découvrir et créer des événements exceptionnels.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Navigation</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Événements</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Créer un événement</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Catégories</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Concerts</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Conférences</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sports</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Gastronomie</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 mb-2">Abonnez-vous pour recevoir les derniers événements</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Votre email" class="px-3 py-2 rounded-l-md text-gray-800 w-full">
-                        <button class="bg-primary px-4 py-2 rounded-r-md hover:bg-secondary transition">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2023 EventSphere. Tous droits réservés.</p>
-            </div>
+            class="px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-400 rounded hover:bg-gray-100 focus:ring-1 focus:ring-[#f97316] transition"
+          >
+            {{ cat }}
+          </button>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section>
+      <div
+        *ngIf="events"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <!-- Event Card -->
+        <div
+          *ngFor="let e of events"
+          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+        >
+          <div class="relative">
+            <img
+              [src]="'http://localhost:8085/images/' + e.image"
+              [alt]="e.category"
+              class="w-full h-48 object-cover"
+            />
+            <div
+              class="absolute top-2 right-2 bg-[#f97316] text-white text-xs px-2 py-1 rounded-full"
+            >
+              <i class="fas fa-music mr-1"></i> {{ e.category }}
+            </div>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-lg text-black">{{ e.title }}</h4>
+            </div>
+            <p class="text-gray-600 text-sm mb-3">{{ e.description }}</p>
+            <div class="flex items-center text-gray-500 text-sm mb-3">
+              <i class="fas fa-calendar-day mr-2"></i>
+              <span>{{ e.dateEvent }} </span>
+            </div>
+            <div class="flex items-center text-gray-500 text-sm mb-4">
+              <i class="fas fa-map-marker-alt mr-2"></i>
+              <span>{{ e.location }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-[#f97316]">
+                À partir de {{ e.price }} DH
+              </span>
+              <button
+                class="bg-[#f97316] text-white px-3 py-1 rounded-md text-sm hover:bg-[#fb7c24] transition"
+              >
+                Détails
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div
+        class="flex justify-center mt-10"
+        *ngIf="!isCategoryFilterActive && totalPages > 1"
+      >
+        <nav class="inline-flex rounded-md shadow">
+          <!-- Previous -->
+          <button
+            class="px-3 py-2 rounded-l-md border border-gray-400 bg-white text-gray-600 hover:bg-gray-100"
+            [disabled]="currentPage === 0"
+            (click)="handleSearchEvents(currentPage - 1, pageSize)"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <!-- Pages -->
+          <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+            <button
+              class="px-4 py-2 border-t border-b border-gray-400 bg-white"
+              [ngClass]="{
+                'text-[#f97316] font-bold': currentPage === i,
+                'text-gray-600 hover:bg-gray-100': currentPage !== i
+              }"
+              (click)="handleSearchEvents(i, pageSize)"
+            >
+              {{ i + 1 }}
+            </button>
+          </ng-container>
+
+          <!-- Next -->
+          <button
+            class="px-3 py-2 rounded-r-md border border-gray-400 bg-white text-gray-600 hover:bg-gray-100"
+            [disabled]="currentPage >= totalPages - 1"
+            (click)="handleSearchEvents(currentPage + 1, pageSize)"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-8 mt-12">
+    <div class="container mx-auto px-4">
+      <!-- Footer Sections -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Bloc 1 : Description -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">EventSphere</h4>
+          <p class="text-gray-400">
+            La plateforme pour découvrir et créer des événements exceptionnels.
+          </p>
+        </div>
+
+        <!-- Bloc 2 : Navigation -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Événements</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Créer un événement</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Bloc 3 : Catégories -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Catégories</h4>
+          <ul class="space-y-2">
+            <li *ngFor="let cat of categories">
+              <a
+                href="javascript:void(0)"
+                (click)="handleSearchEventsCat(cat)"
+                class="text-gray-400 hover:text-white transition"
+                >{{ cat }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+        <p>&copy; 2023 EventSphere. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

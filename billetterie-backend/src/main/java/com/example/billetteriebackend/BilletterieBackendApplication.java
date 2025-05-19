@@ -72,12 +72,12 @@ public class BilletterieBackendApplication {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			Event event1 = createEvent("Summer Music Festival", "Annual outdoor music festival",
-					"Central Park, New York", "music1.jpg", Status.REFUSED,
+					"Central Park, New York", "1.jpg", Status.REFUSED,
 					dateFormat.parse("2023-06-15"), dateFormat.parse("2023-06-18"),
 					getRandomCategory(categories), organizer);
 
 			Event event2 = createEvent("Tech Summit", "Biggest tech conference",
-					"San Francisco", "tech1.jpg", Status.REFUSED,
+					"San Francisco", "2.jpg", Status.REFUSED,
 					dateFormat.parse("2023-07-10"), dateFormat.parse("2023-07-12"),
 					getRandomCategory(categories), organizer);
 
@@ -117,7 +117,7 @@ public class BilletterieBackendApplication {
 					getRandomCategory(categories), organizer);
 
 			Event event10 = createEvent("Digital Art Show", "InterREFUSED digital installations",
-					"Paris", "art3.jpg", Status.REFUSED,
+					"Paris", "art3.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-07-30"), dateFormat.parse("2023-08-15"),
 					getRandomCategory(categories), organizer);
 
