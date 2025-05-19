@@ -2,6 +2,7 @@ package com.example.billetteriebackend.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor @NoArgsConstructor
 public class Ticket {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

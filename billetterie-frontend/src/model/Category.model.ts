@@ -1,7 +1,10 @@
-export interface Category {
-
-id:number;
-name:string;
-
-
+export enum Category {
+  CONCERT = 'CONCERT',
+  SPORT = 'SPORT',
+  THEATRE = 'THEATRE',
+  CINEMA = 'CINEMA',
+  FESTIVAL = 'FESTIVAL',
+  CONFERENCE = 'CONFERENCE',
+  EXPOSITION = 'EXPOSITION',
+  ATELIER = 'ATELIER',
 }

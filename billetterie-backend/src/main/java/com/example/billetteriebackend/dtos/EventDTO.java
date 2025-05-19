@@ -29,4 +29,11 @@ public class EventDTO {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+    private  double price;
+
+
+
+    private int currentPage;
+    private int totalPages;
+    private int pageSize;
 }

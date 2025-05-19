@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,7 +12,22 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { EventDetailsComponent } from './features/events/event-details/event-details.component';
 import { TicketsSelectionComponent } from './features/events/tickets-selection/tickets-selection.component';
 import { UpdateEventsComponent } from './features/organizer/components/update-events/update-events.component';
-
+import { LayoutComponent } from './features/admin/components/layout/layout.component';
+import { EvaluateEventComponent } from './features/admin/components/evaluate-event/evaluate-event.component';
+import { ManageEventsComponent } from './features/admin/components/manage-events/manage-events.component';
+import { ManageUsersComponent } from './features/admin/components/manage-users/manage-users.component';
+import { TableViewDemoComponent } from './features/admin/components/table-view-demo/table-view-demo.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { provideHttpClient } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +35,11 @@ import { UpdateEventsComponent } from './features/organizer/components/update-ev
     NewEventsComponent,
     EventStatisticsComponent,
     HeaderComponent,
+    LayoutComponent,
+    EvaluateEventComponent,
+    ManageEventsComponent,
+    ManageUsersComponent,
+    TableViewDemoComponent,
     EventDetailsComponent, 
     TicketsSelectionComponent,
     UpdateEventsComponent
@@ -29,12 +48,25 @@ import { UpdateEventsComponent } from './features/organizer/components/update-ev
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule, 
     FormsModule, 
     RouterModule, 
-    RouterLink
+    RouterLink,
+    MatTableModule,
+    MatButton,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    CommonModule,
+    HttpClientModule
+    
   ],
-  providers: [],
+  providers: [
+    provideHttpClient()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

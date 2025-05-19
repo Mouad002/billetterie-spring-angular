@@ -7,15 +7,27 @@ import { EventStatisticsComponent } from './features/organizer/components/event-
 import { EventsComponent } from './events/events.component';
 import { TicketsSelectionComponent } from './features/events/tickets-selection/tickets-selection.component';
 import { EventDetailsComponent } from './features/events/event-details/event-details.component';
+import { LayoutComponent } from '../app/features/admin/components/layout/layout.component';
+import { EvaluateEventComponent } from '../app/features/admin/components/evaluate-event/evaluate-event.component';
+import { ManageEventsComponent } from '../app/features/admin/components/manage-events/manage-events.component';
+import { ManageUsersComponent } from '../app/features/admin/components/manage-users/manage-users.component';
+
 
 const routes: Routes = [
   {path : "my-events", component : MyEventsComponent}, 
   {path : "new-event", component : NewEventsComponent},
   {path : 'update-event/:id', component : UpdateEventsComponent},
   {path : "event-statistics", component : EventStatisticsComponent},
-  { path:"events", component: EventsComponent},
+  { path:"home", component: EventsComponent},
   {path:"ticket-selection", component: TicketsSelectionComponent},
-  {path : "events-details", component : EventDetailsComponent}
+  {path : "events-details", component : EventDetailsComponent},
+  {path: 'admin-panel', component: LayoutComponent, 
+    children: [
+      {path: 'validate-events', component: EvaluateEventComponent},
+      {path: 'manage-events', component: ManageEventsComponent},
+      {path: 'manage-users', component: ManageUsersComponent}
+    ]
+  }
 ];
 
 @NgModule({
