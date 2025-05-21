@@ -54,7 +54,6 @@ export class NewEventsComponent implements OnInit{
           showConfirmButton: false,
           timer: 2000
         });
-        this.handleUploadImage();
         this.router.navigateByUrl("/my-events")
       },
       error : err =>{
@@ -80,6 +79,7 @@ export class NewEventsComponent implements OnInit{
   }
   handleUploadImage(): void {
     this.imageUploaderService.handleUploadImage(this.formData);
+    console.log(this.formData)
   }
 
 
