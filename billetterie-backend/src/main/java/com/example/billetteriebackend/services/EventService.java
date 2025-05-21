@@ -20,7 +20,7 @@ public interface EventService {
     ResponseMessageDTO deleteEvent(Long id);
 
     ResponseApi<EventForManagingDTO> getEventsForManaging(int page, int size);
-    Page<EventDTO> listEvents(Pageable pageable) ;
+    Page<EventDTO> listEvents(String status,Pageable pageable) ;
     EventDTO saveEvent(EventDTO eventDTO);
     Page<EventDTO> searchEvents(String keyword,Pageable pageable) ;
 

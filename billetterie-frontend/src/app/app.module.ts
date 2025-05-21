@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { EventsComponent } from './events/events.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     TableViewDemoComponent,
     EventDetailsComponent, 
     TicketsSelectionComponent,
-    UpdateEventsComponent
+    UpdateEventsComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,

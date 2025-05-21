@@ -1,6 +1,7 @@
 package com.example.billetteriebackend.web;
 
 import com.example.billetteriebackend.dtos.EventDTO;
+import com.example.billetteriebackend.entities.Status;
 import com.example.billetteriebackend.services.EventService;
 import com.example.billetteriebackend.services.OrganizerServices;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class HomeRestController {
                                  @RequestParam(defaultValue = "2") int size){
 
         Pageable pageable = PageRequest.of(page, size);
-        return eventService.listEvents(pageable);
+        return eventService.listEvents("PUBLISHED",pageable);
     }
 
 

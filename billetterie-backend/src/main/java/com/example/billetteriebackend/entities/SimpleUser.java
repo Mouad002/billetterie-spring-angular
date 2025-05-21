@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @DiscriminatorValue("SIMPLE_USER")
 public class SimpleUser extends User {
+
 }
