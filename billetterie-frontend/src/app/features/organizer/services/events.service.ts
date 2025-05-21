@@ -11,24 +11,24 @@ export class EventsService {
   constructor(private http : HttpClient) { }
 
   searchEvent(keyword : string) : Observable<Array<AppEvent>>{
-    return this.http.get<Array<AppEvent>>("http://localhost:8085/events/search?keyword="+keyword);
+    return this.http.get<Array<AppEvent>>("http://localhost:8085/organizer/events/search?keyword="+keyword);
   }
 
   getEvents():Observable<Array<AppEvent>>{
-    return this.http.get<Array<AppEvent>>("http://localhost:8085/events");
+    return this.http.get<Array<AppEvent>>("http://localhost:8085/organizer/events");
   }
 
   saveEvent(event : AppEvent):Observable<AppEvent>{
-    return this.http.post<AppEvent>("http://localhost:8085/events", event);
+    return this.http.post<AppEvent>("http://localhost:8085/organizer/events", event);
   }
 
   // changer l'URL
   getEventById(id : number):Observable<AppEvent>{
-    return this.http.get<AppEvent>(`http://localhost:8085/events/${id}`);
+    return this.http.get<AppEvent>(`http://localhost:8085/organizer/events/${id}`);
   }
 
   updateEvent(id : number, event : AppEvent) : Observable<AppEvent>{
-    return this.http.put<AppEvent>(`http://localhost:8085/events/${id}`, event);
+    return this.http.put<AppEvent>(`http://localhost:8085/organizer/events/${id}`, event);
   }
 
 

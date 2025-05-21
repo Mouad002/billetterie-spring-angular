@@ -15,8 +15,7 @@ export class MyEventsComponent implements OnInit{
   events! : Observable<Array<AppEvent>>;
   errorMessage! : string;
   searchFormGroup! : FormGroup;
-  nameOrganizer! : string;
-
+  
   constructor(private eventService : EventsService, private fb : FormBuilder){}
 
   ngOnInit(): void {
@@ -24,7 +23,6 @@ export class MyEventsComponent implements OnInit{
       keyword : this.fb.control(""), 
     });
     this.getEvents();
-    this.nameOrganizer = "Mohamed Amine";
   }
 
   handleSearchEvents(){

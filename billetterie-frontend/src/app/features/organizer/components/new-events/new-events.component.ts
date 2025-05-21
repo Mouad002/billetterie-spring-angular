@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AppEvent } from '../../../../../model/event.model';
+//import {ImageUploaderService} from '../../../../services/image-uploader.service';
 
 @Component({
   selector: 'app-new-events',
@@ -15,6 +16,8 @@ import { AppEvent } from '../../../../../model/event.model';
 export class NewEventsComponent implements OnInit{
 
   newEventFormGroup! : FormGroup;
+  imagePreview: string | ArrayBuffer | null = null;
+  formData: FormData = new FormData();
 
   constructor(private fb:FormBuilder, private eventService : EventsService, private router : Router){}
 
@@ -63,6 +66,21 @@ export class NewEventsComponent implements OnInit{
       }
     })
   }
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement)?.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+      this.formData.append('image', file);
+    }
+  }
+  // handleUploadImage(): void {
+  //   this.imageUploaderService.handleUploadImage(this.formData);
+  //   console.log(this.formData)
+  // }
 
 
 }

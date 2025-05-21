@@ -29,7 +29,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { EventsComponent } from './events/events.component';
-import { OrganizerLayoutComponentComponent } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
+import {
+  EventDetailsOrganizerComponent
+} from './features/organizer/components/event-details-organizer/event-details-organizer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,18 +44,18 @@ import { OrganizerLayoutComponentComponent } from './features/organizer/componen
     ManageEventsComponent,
     ManageUsersComponent,
     TableViewDemoComponent,
-    EventDetailsComponent, 
+    EventDetailsComponent,
     TicketsSelectionComponent,
     UpdateEventsComponent,
     EventsComponent,
-    OrganizerLayoutComponentComponent
+    EventDetailsOrganizerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule, 
-    RouterModule, 
+    FormsModule,
+    RouterModule,
     RouterLink,
     MatTableModule,
     MatButton,
@@ -66,7 +68,7 @@ import { OrganizerLayoutComponentComponent } from './features/organizer/componen
     MatSnackBarModule,
     CommonModule,
     HttpClientModule
-    
+
   ],
   providers: [
     provideHttpClient()

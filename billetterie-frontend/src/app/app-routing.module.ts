@@ -12,6 +12,7 @@ import { EvaluateEventComponent } from '../app/features/admin/components/evaluat
 import { ManageEventsComponent } from '../app/features/admin/components/manage-events/manage-events.component';
 import { ManageUsersComponent } from '../app/features/admin/components/manage-users/manage-users.component';
 import { OrganizerLayoutComponentComponent } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
+import { EventDetailsOrganizerComponent } from './features/organizer/components/event-details-organizer/event-details-organizer.component';
 
 
 const routes: Routes = [
@@ -20,11 +21,11 @@ const routes: Routes = [
     {path : "my-events", component : MyEventsComponent},
     {path : "new-event", component : NewEventsComponent},
     {path : 'update-event/:id', component : UpdateEventsComponent},
-    {path : "event-statistics", component : EventStatisticsComponent},
-    {path : "events-details", component : EventDetailsComponent},
+    {path : "event-statistics/:id", component : EventStatisticsComponent},
+    {path : "events-details/:id", component : EventDetailsOrganizerComponent},
   ]},
 
-  { path:"home", component: EventsComponent},
+  {path:"home", component: EventsComponent},
   {path:"ticket-selection", component: TicketsSelectionComponent},
   
   {path: 'admin-panel', component: LayoutComponent, 
