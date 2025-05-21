@@ -29,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { EventsComponent } from './events/events.component';
+import { OrganizerLayoutComponentComponent } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { EventsComponent } from './events/events.component';
     EventDetailsComponent, 
     TicketsSelectionComponent,
     UpdateEventsComponent,
-    EventsComponent
+    EventsComponent,
+    OrganizerLayoutComponentComponent
   ],
   imports: [
     BrowserModule,

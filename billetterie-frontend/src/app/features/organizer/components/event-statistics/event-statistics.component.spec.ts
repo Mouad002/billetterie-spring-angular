@@ -21,3 +21,5 @@ describe('EventStatisticsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
