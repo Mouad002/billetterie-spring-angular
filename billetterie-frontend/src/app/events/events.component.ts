@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppEvent } from '../../model/home.model';
+import { AppEvent } from '../../model/event.model';
 import { CommonModule } from '@angular/common';
 import { Category } from '../../model/Category.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
