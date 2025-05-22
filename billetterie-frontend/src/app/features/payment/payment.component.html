@@ -1,0 +1,194 @@
+<!-- payment-page-template.html -->
+<div class="min-h-screen bg-gray-50 py-8 px-4" xmlns="http://www.w3.org/1999/html">
+  <div class="max-w-5xl mx-auto">
+    <!-- Header with Logo -->
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold text-orange-500">DEMANDE DE PAIEMENT</h1>
+      <img src="guichet.jpeg" alt="Logo" class="h-12">
+    </div>
+
+    <hr class="border-gray-300 my-4">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Left Column - Payment Details -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-lg font-semibold">DÉTAIL DE PAIEMENT</h2>
+          <span class="text-gray-500 text-sm">{{ currentDate | date: 'EEEE, MMMM d, y HH:mm:ss' }}</span>
+        </div>
+
+        <!-- Payment Methods -->
+        <form [formGroup]="paymentForm">
+        <div class="mb-6">
+          <label class="block text-gray-700 mb-3">Modes de paiement :</label>
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <input type="radio" id="card" name="paymentMethod" formControlName="paymentMethod" value="card" checked class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+              <label for="card" class="ml-2 flex items-center">
+                <img src="visa.png" alt="Visa" class="h-8 mr-2">
+                <img src="mastercard.png" alt="Mastercard" class="h-8 mr-2">
+                <span class="text-blue-800 font-semibold ml-2">CMI</span>
+              </label>
+            </div>
+            <div class="flex items-center">
+              <input type="radio" id="unionpay" formControlName="paymentMethod" name="paymentMethod" value="unionpay" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+              <label for="unionpay" class="ml-2 flex items-center">
+                <img src="unionPay.png" alt="UnionPay" class="h-8">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cardholder Name -->
+        <div class="mb-4">
+          <label for="cardholderName" class="block text-gray-700 mb-2">Nom du porteur de la carte</label>
+          <input
+            type="text"
+            formControlName="cardholderName"
+            id="cardholderName"
+            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="NOM DU PORTEUR DE LA CARTE">
+          <div *ngIf="paymentForm.get('cardholderName')?.invalid && paymentForm.get('cardholderName')?.touched" class="text-red-500 text-sm mt-1">
+            Veuillez saisir le nom du porteur de la carte
+          </div>
+        </div>
+
+        <!-- Card Number -->
+        <div class="mb-4">
+          <label for="cardNumber" class="block text-gray-700 mb-2">Numéro de carte de paiement</label>
+          <input
+            type="text"
+            id="cardNumber"
+            formControlName="cardNumber"
+            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="NUMÉRO DE CARTE DE PAIEMENT">
+          <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched" class="text-red-500 text-sm mt-1">
+            Veuillez saisir un numéro de carte valide
+          </div>
+        </div>
+
+        <!-- Expiration Date and CVV -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="block text-gray-700 mb-2">Date d'expiration</label>
+            <div class="grid grid-cols-2 gap-2">
+              <select  formControlName="expiryMonth"
+                       class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+              </select>
+              <select
+                formControlName="expiryYear"
+                class="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="cvv" class="block text-gray-700 mb-2">Code de vérification</label>
+            <input
+              type="password"
+              formControlName="cvv"
+              id="cvv"
+              maxlength="4"
+              class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched" class="text-red-500 text-sm mt-1">
+            Code invalide
+          </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="mb-6">
+          <div class="flex items-start">
+            <input
+              type="checkbox"
+              formControlName="termsAccepted"
+              id="terms"
+              class="mt-1 mr-2 h-4 w-4 text-blue-600">
+            <label for="terms" class="text-gray-700 text-sm">
+              Confirmer l'acceptation des
+              <a href="#" class="text-blue-600 hover:underline">conditions générales d'utilisation du service</a>
+            </label>
+          </div>
+          <div *ngIf="paymentForm.get('termsAccepted')?.invalid && paymentForm.get('termsAccepted')?.touched" class="text-red-500 text-sm mt-1">
+            Vous devez accepter les conditions d'utilisation
+          </div>
+        </div>
+
+        <p class="text-gray-600 text-sm italic mb-4">
+          Les <span class="text-red-500 font-medium">informations sur le paiement</span> vous concernant resteront confidentielles.
+        </p>
+        </form>
+      </div>
+
+
+      <!-- Right Column - Order Details -->
+      <div class="space-y-6">
+        <!-- Order Details -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-lg font-semibold mb-4 text-orange-500">DÉTAIL DE LA COMMANDE</h2>
+          <div class="space-y-3">
+            <div class="flex justify-between border-b border-gray-100 pb-2">
+              <span class="text-gray-700">Identifiant</span>
+              <span class="font-medium">MAEV004473M627PRY-HAKAUWV</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-700">Montant</span>
+              <span class="font-medium">{{totalPrice}} MAD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Merchant Details -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-lg font-semibold mb-4 text-orange-500">DÉTAIL MARCHAND</h2>
+          <div class="space-y-3">
+            <div class="flex justify-between">
+              <span class="text-gray-700">Nom du marchand</span>
+              <span class="font-medium">GUICHET MAROC (600002835)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Information -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h2 class="text-lg font-semibold mb-4 text-orange-500">INFORMATIONS DU CLIENT</h2>
+          <div class="space-y-3">
+            <div class="flex justify-between border-b border-gray-100 pb-2">
+              <span class="text-gray-700">Nom</span>
+              <span class="font-medium">ABDELMONAIM AHDOUD</span>
+            </div>
+            <div class="flex justify-between border-b border-gray-100 pb-2">
+              <span class="text-gray-700">Adresse</span>
+              <span class="font-medium">MA</span>
+            </div>
+            <div class="flex justify-between border-b border-gray-100 pb-2">
+              <span class="text-gray-700">Tél</span>
+              <span class="font-medium">212623049332</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-700">E-mail</span>
+              <span class="font-medium">abdelmonaimahdoud3gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 gap-4">
+          <button
+            type="submit"
+            class="bg-orange-500 hover:bg-orange-700 text-white py-3 px-6 rounded font-medium transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+            Valider le paiement
+          </button>
+          <button
+            (click)="cancelPayment()"
+            type="button"
+            class="bg-red-500 hover:bg-red-700 text-white py-3 px-6 rounded font-medium transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+            Annuler
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

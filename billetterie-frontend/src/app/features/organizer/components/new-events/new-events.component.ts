@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AppEvent } from '../../../../../model/event.model';
 import {TicketType} from '../../../../../model/TicketType.model';
+import {ImageUploaderService} from '../../../../services/image-uploader.service';
 //import {ImageUploaderService} from '../../../../services/image-uploader.service';
 
 @Component({
@@ -21,14 +22,14 @@ export class NewEventsComponent implements OnInit{
   ticketTypes: TicketType[] = [];
   formData: FormData = new FormData();
 
-  constructor(private fb:FormBuilder, private eventService : EventsService, private router : Router){}
+  constructor(private fb:FormBuilder, private eventService : EventsService, private router : Router, private imageUploaderService: ImageUploaderService ){}
 
   ngOnInit(): void {
     this.newEventFormGroup = this.fb.group({
     title: [null, Validators.required],
     description: [null, Validators.required],
     location: [null, Validators.required],
-    image: ["1.jpg"],
+    image: [null],
     category: [null, Validators.required],
     status: [null, Validators.required],
     dateEvent: [null, Validators.required],
@@ -104,6 +105,7 @@ export class NewEventsComponent implements OnInit{
         });
       }
     })
+    this.handleImageUpload();
   }
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement)?.files?.[0];
@@ -111,10 +113,15 @@ export class NewEventsComponent implements OnInit{
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result;
+        console.log("Image Preview: ", this.imagePreview);
+        console.log("Image name "+ file.name);
       };
       reader.readAsDataURL(file);
-      this.formData.append('image', file);
+      this.formData.append('file', file);
     }
+  }
+  handleImageUpload() {
+      this.imageUploaderService.handleUploadImage(this.formData);
   }
 
 

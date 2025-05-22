@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppEvent } from '../../model/event.model';
-import { CommonModule } from '@angular/common';
 import { Category } from '../../model/Category.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { catchError, Observable, throwError } from 'rxjs';
-import { ReactiveFormsModule } from '@angular/forms';
-import { PageEvent } from '../../model/PageEvent.model';
 import { HomeService } from '../services/home.service';
 @Component({
   selector: 'app-events',

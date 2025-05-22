@@ -8,7 +8,7 @@ import { NewEventsComponent } from './features/organizer/components/new-events/n
 import { EventStatisticsComponent } from './features/organizer/components/event-statistics/event-statistics.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterModule } from '@angular/router';
+import {RouterLink, RouterModule, RouterOutlet} from '@angular/router';
 import { EventDetailsComponent } from './features/events/event-details/event-details.component';
 import { TicketsSelectionComponent } from './features/events/tickets-selection/tickets-selection.component';
 import { UpdateEventsComponent } from './features/organizer/components/update-events/update-events.component';
@@ -32,6 +32,9 @@ import { EventsComponent } from './events/events.component';
 import {
   EventDetailsOrganizerComponent
 } from './features/organizer/components/event-details-organizer/event-details-organizer.component';
+import {
+  OrganizerLayoutComponentComponent
+} from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,8 @@ import {
     TicketsSelectionComponent,
     UpdateEventsComponent,
     EventsComponent,
-    EventDetailsOrganizerComponent
+    EventDetailsOrganizerComponent,
+    OrganizerLayoutComponentComponent,
   ],
   imports: [
     BrowserModule,
