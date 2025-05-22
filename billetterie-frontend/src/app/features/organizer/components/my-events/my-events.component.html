@@ -1,59 +1,4 @@
-
-<body class="bg-gray-100 text-gray-900">
-  <div class="flex min-h-screen">
-    <!-- Sidebar -->
-    <aside class="w-72 bg-white shadow-lg p-6 flex flex-col justify-between">
-      <div>
-        <h1 class="text-2xl font-extrabold text-black mb-8">Organisateur</h1>
-        
-        <div class="space-y-4">
-          <!-- Dashboard -->
-          <button class="w-full flex items-start gap-4 bg-gray-100 hover:bg-gray-200 p-4 rounded-lg transition text-left">
-            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-              d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6"/></svg>
-            <div>
-              <div class="font-semibold">Dashboard</div>
-              <div class="text-sm text-gray-500">Vue d’ensemble</div>
-            </div>
-          </button>
-
-          <!-- Ajouter événement -->
-          <button class="w-full flex items-start gap-4 bg-gray-100 hover:bg-orange-100 p-4 rounded-lg transition text-left"
-          routerLink="/new-event">
-            <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 4v16m8-8H4"/></svg>
-            <div>
-              <div class="font-semibold">Événements</div>
-              <div class="text-sm text-gray-500">Ajouter ou gérer</div>
-            </div>
-          </button>
-
-          <!-- Déconnexion -->
-          <button class="w-full flex items-start gap-4 bg-gray-100 hover:bg-red-100 p-4 rounded-lg transition text-left">
-            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5"/></svg>
-            <div>
-              <div class="font-semibold text-red-600">Déconnexion</div>
-              <div class="text-sm text-gray-500">Se déconnecter du compte</div>
-            </div>
-          </button>
-        </div>
-      </div>
-      <p class="text-sm text-gray-400">&copy; 2025</p>
-    </aside>
-
-    <!-- Contenu principal -->
-    <main class="flex-1 p-10 bg-gray-200">
-
-        <div class="mb-6">
-            <h2 class="text-3xl font-bold text-black">Bienvenue, Jean Dupont !</h2>
-            <p class="text-gray-600">Ceci est votre tableau de bord organisateur.</p>
-        </div>
-
-        <!-- Barre de recherche avec bouton -->
+<!-- Barre de recherche avec bouton -->
         <div class="flex justify-center mb-8">
             <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchEvents()">
                 <div class="w-full max-w-xl flex">
@@ -90,7 +35,7 @@
                 
                 <!-- Bouton Détails -->
                 <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition font-semibold"
-                routerLink="#detaillsEvent" [routerLink]="['/details', event.id]">
+                routerLink="#detaillsEvent" routerLink="/organizer/events-details/{{event.id}}">
                 Détails
                 </button>
             </div>
@@ -101,18 +46,15 @@
 
         <!-- Template si pas de résultat -->
         <ng-template #noResults>
-        <p class="mt-8 text-center text-gray-500">Aucun événement trouvé.</p>
+          <p class="mt-8 text-center text-gray-500">Aucun événement trouvé.</p>
         </ng-template>
 
         <!-- Template pendant le chargement -->
         <ng-template #loading>
-        <p class="mt-8 text-center text-gray-400">Chargement des événements...</p>
+          <p class="mt-8 text-center text-gray-400">Chargement des événements...</p>
         </ng-template>
 
         <!-- Message d'erreur -->
         <div *ngIf="errorMessage" class="mt-4 text-red-600 font-semibold text-center">
-        {{ errorMessage }}
+          {{ errorMessage }}
         </div>
-    </main>
-  </div>
-</body>

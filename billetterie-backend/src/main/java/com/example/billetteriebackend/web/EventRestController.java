@@ -15,30 +15,30 @@ public class EventRestController {
 
     private OrganizerServices organizerServices;
 
-    @GetMapping("/events")
+    @GetMapping("/organizer/events")
     public List<EventDTO> events(){
 
         return organizerServices.listEvents();
     }
 
-    @GetMapping("/events/{id}")
+    @GetMapping("/organizer/events/{id}")
     public EventDTO getEvent(@PathVariable(name = "id") Long eventId)throws EventNotFoundException {
         return organizerServices.getEvent(eventId);
     }
 
-    @PostMapping("/events")
+    @PostMapping("/organizer/events")
     public EventDTO saveEvent(@RequestBody EventDTO eventDTO){
         return organizerServices.saveEvent(eventDTO);
     }
 
-    @PutMapping("/events/{eventId}")
+    @PutMapping("/organizer/events/{eventId}")
     public EventDTO updateEvent(@PathVariable Long eventId, @RequestBody EventDTO eventDTO) {
         System.out.println("EventDTO reçu : " + eventDTO); // debug
         eventDTO.setId(eventId);
         return organizerServices.updateEvent(eventDTO);
     }
 
-    @GetMapping("/events/search")
+    @GetMapping("/organizer/events/search")
     public List<EventDTO> searchEvent(@RequestParam(name = "keyword", defaultValue = "") String keyword){
         return organizerServices.searchEvents(keyword);
     }

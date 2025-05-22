@@ -9,7 +9,7 @@ export interface AppEvent {
   location: string;
   image: string;
   category: Category;
-  dateEvent: String;
+  dateEvent: string;
   heure: Date;
   status: Status;
   price : number;

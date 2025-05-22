@@ -15,7 +15,7 @@ export class MyEventsComponent implements OnInit{
   events! : Observable<Array<AppEvent>>;
   errorMessage! : string;
   searchFormGroup! : FormGroup;
-
+  
   constructor(private eventService : EventsService, private fb : FormBuilder){}
 
   ngOnInit(): void {

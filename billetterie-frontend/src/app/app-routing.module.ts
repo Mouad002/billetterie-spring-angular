@@ -11,16 +11,23 @@ import { LayoutComponent } from '../app/features/admin/components/layout/layout.
 import { EvaluateEventComponent } from '../app/features/admin/components/evaluate-event/evaluate-event.component';
 import { ManageEventsComponent } from '../app/features/admin/components/manage-events/manage-events.component';
 import { ManageUsersComponent } from '../app/features/admin/components/manage-users/manage-users.component';
+import { OrganizerLayoutComponentComponent } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
+import { EventDetailsOrganizerComponent } from './features/organizer/components/event-details-organizer/event-details-organizer.component';
 
 
 const routes: Routes = [
-  {path : "my-events", component : MyEventsComponent}, 
-  {path : "new-event", component : NewEventsComponent},
-  {path : 'update-event/:id', component : UpdateEventsComponent},
-  {path : "event-statistics", component : EventStatisticsComponent},
-  { path:"home", component: EventsComponent},
+
+  {path : 'organizer', component : OrganizerLayoutComponentComponent, children : [
+    {path : "my-events", component : MyEventsComponent},
+    {path : "new-event", component : NewEventsComponent},
+    {path : 'update-event/:id', component : UpdateEventsComponent},
+    {path : "event-statistics/:id", component : EventStatisticsComponent},
+    {path : "events-details/:id", component : EventDetailsOrganizerComponent},
+  ]},
+
+  {path:"home", component: EventsComponent},
   {path:"ticket-selection", component: TicketsSelectionComponent},
-  {path : "events-details", component : EventDetailsComponent},
+  
   {path: 'admin-panel', component: LayoutComponent, 
     children: [
       {path: 'validate-events', component: EvaluateEventComponent},
