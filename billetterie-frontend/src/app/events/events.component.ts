@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppEvent } from '../../model/home.model';
+import { AppEvent } from '../../model/event.model';
 import { CommonModule } from '@angular/common';
 import { Category } from '../../model/Category.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -14,8 +14,8 @@ import { HomeService } from '../services/home.service';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  events!: AppEvent[];    
- 
+  events!: AppEvent[];
+
   errorMessage: string = '';
 
  searchFormGroup : FormGroup | undefined;
@@ -58,7 +58,7 @@ currentPage : number =0;
 }
 
 
-  
+
 
 handleSearchEventsCat(cat: string) {
   this.isCategoryFilterActive = true; // <-- Ajouté ici
@@ -79,10 +79,10 @@ handleSearchEventsCat(cat: string) {
 }
 
 
-  
 
 
-  
-  
+
+
+
 
 }

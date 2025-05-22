@@ -18,7 +18,7 @@ export class EventsService {
     return this.http.get<Array<AppEvent>>("http://localhost:8085/organizer/events");
   }
 
-  saveEvent(event : AppEvent):Observable<AppEvent>{
+    saveEvent(event: AppEvent):Observable<AppEvent>{
     return this.http.post<AppEvent>("http://localhost:8085/organizer/events", event);
   }
 
