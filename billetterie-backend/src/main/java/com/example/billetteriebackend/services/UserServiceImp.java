@@ -3,9 +3,7 @@ package com.example.billetteriebackend.services;
 import com.example.billetteriebackend.dtos.ResponseMessageDTO;
 import com.example.billetteriebackend.dtos.UpdateUserStatusDTO;
 import com.example.billetteriebackend.dtos.UserForManagingDTO;
-import com.example.billetteriebackend.entities.Status;
-import com.example.billetteriebackend.entities.Ticket;
-import com.example.billetteriebackend.entities.User;
+import com.example.billetteriebackend.entities.AppUser;
 import com.example.billetteriebackend.entities.UserStatus;
 import com.example.billetteriebackend.exceptions.StringToEnumConversionException;
 import com.example.billetteriebackend.helpers.ResponseApi;
@@ -33,7 +31,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public ResponseApi<UserForManagingDTO> getUsersForManaging(int page, int size) {
-        Page<User> usersPage = userRepository.findAll(PageRequest.of(page, size));
+        Page<AppUser> usersPage = userRepository.findAll(PageRequest.of(page, size));
         ResponseApi<UserForManagingDTO> response = new ResponseApi<>();
         BeanUtils.copyProperties(usersPage, response);
         List<UserForManagingDTO> content = usersPage.getContent().stream().map(user -> userMapper.getUserForManagingDtoFromUser(user)).collect(Collectors.toList());
@@ -43,7 +41,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public ResponseMessageDTO changeUserStatus(UpdateUserStatusDTO dto) {
-        User currentUser = userRepository.findById(dto.getId()).orElse(null);
+        AppUser currentUser = userRepository.findById(dto.getId()).orElse(null);
 
         if(currentUser == null) {
             return ResponseMessageDTO.builder()

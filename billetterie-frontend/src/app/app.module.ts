@@ -8,7 +8,7 @@ import { NewEventsComponent } from './features/organizer/components/new-events/n
 import { EventStatisticsComponent } from './features/organizer/components/event-statistics/event-statistics.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterModule } from '@angular/router';
+import {RouterLink, RouterModule, RouterOutlet} from '@angular/router';
 import { EventDetailsComponent } from './features/events/event-details/event-details.component';
 import { TicketsSelectionComponent } from './features/events/tickets-selection/tickets-selection.component';
 import { UpdateEventsComponent } from './features/organizer/components/update-events/update-events.component';
@@ -32,7 +32,16 @@ import { EventsComponent } from './events/events.component';
 import {
   EventDetailsOrganizerComponent
 } from './features/organizer/components/event-details-organizer/event-details-organizer.component';
-import { OrganizerLayoutComponentComponent } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
+import {
+  OrganizerLayoutComponentComponent
+} from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
+import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +59,10 @@ import { OrganizerLayoutComponentComponent } from './features/organizer/componen
     UpdateEventsComponent,
     EventsComponent,
     EventDetailsOrganizerComponent,
-    OrganizerLayoutComponentComponent
+    OrganizerLayoutComponentComponent,
+    LoginComponent,
+    NavbarComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +85,9 @@ import { OrganizerLayoutComponentComponent } from './features/organizer/componen
 
   ],
   providers: [
-    provideHttpClient()
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },
+    provideHttpClient(),
+
   ],
   bootstrap: [AppComponent]
 })

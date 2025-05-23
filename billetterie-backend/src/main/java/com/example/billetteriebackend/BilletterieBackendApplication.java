@@ -5,6 +5,7 @@ import com.example.billetteriebackend.entities.*;
 import com.example.billetteriebackend.repositories.EventRepository;
 import com.example.billetteriebackend.repositories.OrganizerRepository;
 import com.example.billetteriebackend.repositories.TicketRepository;
+import com.example.billetteriebackend.security.services.AccountService;
 import com.example.billetteriebackend.services.OrganizerServices;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -31,7 +32,7 @@ public class BilletterieBackendApplication {
 		SpringApplication.run(BilletterieBackendApplication.class, args);
 	}
 
-	//@Bean
+	@Bean
 	CommandLineRunner adminFakeDataInitializer(OrganizerRepository organizerRepository, EventRepository eventRepository, TicketRepository ticketRepository) {
 		return args -> {
 //			Organizer organizer = new Organizer();
@@ -72,27 +73,27 @@ public class BilletterieBackendApplication {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			Event event1 = createEvent("Summer Music Festival", "Annual outdoor music festival",
-					"Central Park, New York", "1.jpg", Status.REFUSED,
+					"Central Park, New York", "1.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-06-15"), dateFormat.parse("2023-06-18"),
 					getRandomCategory(categories), organizer);
 
 			Event event2 = createEvent("Tech Summit", "Biggest tech conference",
-					"San Francisco", "2.jpg", Status.REFUSED,
+					"San Francisco", "2.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-07-10"), dateFormat.parse("2023-07-12"),
 					getRandomCategory(categories), organizer);
 
 			Event event3 = createEvent("Modern Art Expo", "Contemporary art exhibition",
-					"London", "art1.jpg", Status.REFUSED,
+					"London", "art1.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-08-05"), dateFormat.parse("2023-09-15"),
 					getRandomCategory(categories), organizer);
 
 			Event event4 = createEvent("Jazz Night", "Evening of smooth jazz",
-					"Tokyo", "music2.jpg", Status.REFUSED,
+					"Tokyo", "music2.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-05-20"), dateFormat.parse("2023-05-20"),
 					getRandomCategory(categories), organizer);
 
 			Event event5 = createEvent("AI Conference", "Latest in artificial intelligence",
-					"Berlin", "tech2.jpg", Status.REFUSED,
+					"Berlin", "tech2.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-09-18"), dateFormat.parse("2023-09-20"),
 					getRandomCategory(categories), organizer);
 
@@ -174,7 +175,7 @@ public class BilletterieBackendApplication {
 		return categories.get(random.nextInt(categories.size()));
 	}
 
-	@Bean
+//    @Bean
 	CommandLineRunner commandLineRunner(OrganizerServices organizerServices) {
 		return args -> {
 
@@ -228,4 +229,31 @@ public class BilletterieBackendApplication {
 	}
 
 
+
+
+
+
+
+
+
+	//@Bean
+	CommandLineRunner commandLineRunnerUserDetails(AccountService accountService) {
+		return args -> {
+			accountService.addNewRole("USER");
+			accountService.addNewRole("ORGANIZER");
+			accountService.addNewRole("ADMIN");
+			accountService.addNewUser("user1", "1234", "1234", "user1@gmail.com");
+			accountService.addNewUser("user2", "1234", "1234", "user2@gmail.com");
+			accountService.addNewUser("admin", "1234", "1234", "admin@gmail.com");
+
+			accountService.addRoleToUser("user1", "USER");
+			accountService.addRoleToUser("user2", "USER");
+
+			accountService.addRoleToUser("user2", "ORGANIZER");
+			accountService.addRoleToUser("admin", "USER");
+			accountService.addRoleToUser("admin", "ORGANIZER");
+
+			accountService.addRoleToUser("admin", "ADMIN");
+		};
+	}
 }

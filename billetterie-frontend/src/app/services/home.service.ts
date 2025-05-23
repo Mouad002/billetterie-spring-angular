@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AppEvent } from '../../model/home.model';
-import { Category } from '../../model/Category.model';
 import { PageEvent } from '../../model/PageEvent.model';
+import {AppEvent} from '../../model/event.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,13 +24,12 @@ export class HomeService {
 
 
 
-  
+
 
 
 
  public geteventsCat(cat : String): Observable<Array<AppEvent>> {
   return this.http.get<Array<AppEvent>>(environment.backendHost+"/home/searchByCat?category="+cat)
-  
 };
 
 }

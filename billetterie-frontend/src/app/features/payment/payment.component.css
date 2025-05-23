@@ -1,0 +1,76 @@
+/* Additional custom styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Styling for inputs */
+input[type="text"],
+input[type="password"],
+select {
+  transition: all 0.3s ease;
+  height: 44px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+/* Styling for radio buttons */
+input[type="radio"] {
+  cursor: pointer;
+}
+
+/* Styling for links */
+a {
+  color: #2b6cb0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Button hover effect */
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Logo styling */
+img[alt="Logo"] {
+  max-height: 48px;
+  width: auto;
+}
+
+/* Payment method images */
+input[type="radio"] + label img {
+  height: 32px;
+  margin-right: 8px;
+}
+/* Better spacing on mobile */
+@media (max-width: 768px) {
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .py-8 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}

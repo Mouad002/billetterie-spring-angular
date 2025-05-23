@@ -5,6 +5,7 @@ import com.example.billetteriebackend.dtos.EventDTO;
 import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.services.OrganizerServices;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin("*")
@@ -16,6 +17,7 @@ public class EventRestController {
     private OrganizerServices organizerServices;
 
     @GetMapping("/organizer/events")
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ORGANIZER')")
     public List<EventDTO> events(){
 
         return organizerServices.listEvents();
