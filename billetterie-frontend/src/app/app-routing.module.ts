@@ -15,16 +15,19 @@ import { OrganizerLayoutComponentComponent } from './features/organizer/componen
 import { EventDetailsOrganizerComponent } from './features/organizer/components/event-details-organizer/event-details-organizer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
-
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { AuthorizationGuard } from './guards/authorization.guard';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 const routes: Routes = [
   {path:"login", component: LoginComponent},
   { path: 'register', component: RegisterComponent },
   {path:"home", component: EventsComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+    {path:"not-authorized", component: NotAuthorizedComponent},
 
 
-  {path : 'organizer', component : OrganizerLayoutComponentComponent, children : [
+
+  {path : 'organizer', component : OrganizerLayoutComponentComponent, canActivate: [AuthenticationGuard,AuthorizationGuard],data: { roles: ['ROLE_ORGANIZER'] }, children : [
     {path : "my-events", component : MyEventsComponent},
     {path : "new-event", component : NewEventsComponent},
     {path : 'update-event/:id', component : UpdateEventsComponent},
@@ -34,7 +37,7 @@ const routes: Routes = [
 
   {path:"ticket-selection", component: TicketsSelectionComponent},
   
-  {path: 'admin-panel', component: LayoutComponent, 
+  {path: 'admin-panel', component: LayoutComponent, canActivate: [AuthenticationGuard,AuthorizationGuard],data: { roles: ['ROLE_ADMIN'] },  // Add this line
     children: [
       {path: 'validate-events', component: EvaluateEventComponent},
       {path: 'manage-events', component: ManageEventsComponent},

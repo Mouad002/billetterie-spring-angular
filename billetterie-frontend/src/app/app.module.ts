@@ -40,6 +40,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     LoginComponent,
     NavbarComponent,
     RegisterComponent,
+    NotAuthorizedComponent,
   ],
   imports: [
     BrowserModule,
