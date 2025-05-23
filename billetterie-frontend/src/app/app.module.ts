@@ -35,6 +35,9 @@ import {
 import {
   OrganizerLayoutComponentComponent
 } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +56,9 @@ import {
     EventsComponent,
     EventDetailsOrganizerComponent,
     OrganizerLayoutComponentComponent,
+    LoginComponent,
+    NavbarComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

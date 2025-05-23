@@ -38,7 +38,7 @@ public class SecurityConfig {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private UserDetailsServiceImpl userDetailsServiceImpl;
+    //private UserDetailsServiceImpl userDetailsServiceImpl;
 
 
     //@Bean

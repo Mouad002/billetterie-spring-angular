@@ -73,27 +73,27 @@ public class BilletterieBackendApplication {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			Event event1 = createEvent("Summer Music Festival", "Annual outdoor music festival",
-					"Central Park, New York", "1.jpg", Status.REFUSED,
+					"Central Park, New York", "1.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-06-15"), dateFormat.parse("2023-06-18"),
 					getRandomCategory(categories), organizer);
 
 			Event event2 = createEvent("Tech Summit", "Biggest tech conference",
-					"San Francisco", "2.jpg", Status.REFUSED,
+					"San Francisco", "2.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-07-10"), dateFormat.parse("2023-07-12"),
 					getRandomCategory(categories), organizer);
 
 			Event event3 = createEvent("Modern Art Expo", "Contemporary art exhibition",
-					"London", "art1.jpg", Status.REFUSED,
+					"London", "art1.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-08-05"), dateFormat.parse("2023-09-15"),
 					getRandomCategory(categories), organizer);
 
 			Event event4 = createEvent("Jazz Night", "Evening of smooth jazz",
-					"Tokyo", "music2.jpg", Status.REFUSED,
+					"Tokyo", "music2.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-05-20"), dateFormat.parse("2023-05-20"),
 					getRandomCategory(categories), organizer);
 
 			Event event5 = createEvent("AI Conference", "Latest in artificial intelligence",
-					"Berlin", "tech2.jpg", Status.REFUSED,
+					"Berlin", "tech2.jpg", Status.PUBLISHED,
 					dateFormat.parse("2023-09-18"), dateFormat.parse("2023-09-20"),
 					getRandomCategory(categories), organizer);
 
@@ -236,7 +236,7 @@ public class BilletterieBackendApplication {
 
 
 
-	@Bean
+	//@Bean
 	CommandLineRunner commandLineRunnerUserDetails(AccountService accountService) {
 		return args -> {
 			accountService.addNewRole("USER");
