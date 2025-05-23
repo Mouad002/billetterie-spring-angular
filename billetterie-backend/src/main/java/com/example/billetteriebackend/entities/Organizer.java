@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @DiscriminatorValue("ORGANIZER")
-public class Organizer extends User {
+public class Organizer extends AppUser {
 
     @OneToMany(mappedBy = "organizer", fetch = FetchType.LAZY)
     private List<Event> events;

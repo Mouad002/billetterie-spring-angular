@@ -5,6 +5,7 @@ import com.example.billetteriebackend.entities.*;
 import com.example.billetteriebackend.repositories.EventRepository;
 import com.example.billetteriebackend.repositories.OrganizerRepository;
 import com.example.billetteriebackend.repositories.TicketRepository;
+import com.example.billetteriebackend.security.services.AccountService;
 import com.example.billetteriebackend.services.OrganizerServices;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -228,4 +229,31 @@ public class BilletterieBackendApplication {
 	}
 
 
+
+
+
+
+
+
+
+	@Bean
+	CommandLineRunner commandLineRunnerUserDetails(AccountService accountService) {
+		return args -> {
+			accountService.addNewRole("USER");
+			accountService.addNewRole("ORGANIZER");
+			accountService.addNewRole("ADMIN");
+			accountService.addNewUser("user1", "1234", "1234", "user1@gmail.com");
+			accountService.addNewUser("user2", "1234", "1234", "user2@gmail.com");
+			accountService.addNewUser("admin", "1234", "1234", "admin@gmail.com");
+
+			accountService.addRoleToUser("user1", "USER");
+			accountService.addRoleToUser("user2", "USER");
+
+			accountService.addRoleToUser("user2", "ORGANIZER");
+			accountService.addRoleToUser("admin", "USER");
+			accountService.addRoleToUser("admin", "ORGANIZER");
+
+			accountService.addRoleToUser("admin", "ADMIN");
+		};
+	}
 }
