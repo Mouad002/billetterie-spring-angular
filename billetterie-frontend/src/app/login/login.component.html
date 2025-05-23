@@ -1,75 +1,36 @@
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <img class="mx-auto h-10 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Connexion à votre compte</h2>
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <!-- Message d'erreur -->
-    <div *ngIf="errorMessage" class="mb-4 p-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
-      {{ errorMessage }}
-    </div>
-
-    <form [formGroup]="formLogin" (ngSubmit)="handleLogin()" class="space-y-6">
+    <form [formGroup]="formLogin" (ngSubmit)="handleLogin()" class="space-y-6" action="#" method="POST">
       <div>
-        <label for="username" class="block text-sm/6 font-medium text-gray-900">Nom d'utilisateur</label>
+        <label for="username" class="block text-sm/6 font-medium text-gray-900">Username</label>
         <div class="mt-2">
-          <input
-            formControlName="username"
-            type="text"
-            name="username"
-            id="username"
-            required
-            [class.border-red-500]="formLogin.get('username')?.invalid && formLogin.get('username')?.touched"
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-          >
-        </div>
-        <div *ngIf="formLogin.get('username')?.invalid && formLogin.get('username')?.touched" class="mt-1 text-sm text-red-600">
-          Le nom d'utilisateur est requis
+          <input formControlName="username" type="text" name="username" id="username"  required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
         </div>
       </div>
 
       <div>
         <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm/6 font-medium text-gray-900">Mot de passe</label>
+          <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+          
         </div>
         <div class="mt-2">
-          <input
-            formControlName="password"
-            type="password"
-            name="password"
-            id="password"
-            required
-            [class.border-red-500]="formLogin.get('password')?.invalid && formLogin.get('password')?.touched"
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-          >
-        </div>
-        <div *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched" class="mt-1 text-sm text-red-600">
-          Le mot de passe est requis
+          <input  formControlName="password" type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
         </div>
       </div>
 
       <div>
-        <button
-          type="submit"
-          [disabled]="formLogin.invalid || isLoading"
-          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
-        >
-          <span *ngIf="!isLoading">Se connecter</span>
-          <span *ngIf="isLoading" class="flex items-center">
-            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Connexion en cours...
-          </span>
-        </button>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
     </form>
 
     <p class="mt-10 text-center text-sm/6 text-gray-500">
-      Pas encore membre ?
-      <a routerLink="/register" class="font-semibold text-indigo-600 hover:text-indigo-500">Inscrivez-vous maintenant</a>
+      Not a member?
+      <a routerLink="/register" class="font-semibold text-indigo-600 hover:text-indigo-500">Register now</a>
     </p>
   </div>
 </div>

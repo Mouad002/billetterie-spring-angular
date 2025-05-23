@@ -12,7 +12,15 @@
         <button class="md:hidden text-gray-600">
           <i class="fas fa-bars text-xl"></i>
         </button>
-        <div class="relative">
+
+           
+<div  *ngIf="authService.isAuthenticated == true" class="relative">
+             <a  class="mr-2 text-gray-600 hover:text-[#f97316] transition"> {{authService.username}}</a>
+        <button (click)="handleLogout()" class="btn btn-success">Logout</button>
+          
+        </div>
+
+        <div  *ngIf="authService.isAuthenticated == false" class="relative">
              <a routerLink="/register" class="mr-2 text-gray-600 hover:text-[#f97316] transition">Register</a>
         <a routerLink="/login" class="text-gray-600 hover:text-[#f97316] transition">Login</a>
           
