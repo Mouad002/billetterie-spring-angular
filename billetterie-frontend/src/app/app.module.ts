@@ -38,6 +38,10 @@ import {
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
+import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +85,9 @@ import { RegisterComponent } from './register/register.component';
 
   ],
   providers: [
-    provideHttpClient()
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },
+    provideHttpClient(),
+
   ],
   bootstrap: [AppComponent]
 })

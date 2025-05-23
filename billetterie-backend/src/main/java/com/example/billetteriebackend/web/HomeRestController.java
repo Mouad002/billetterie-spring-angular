@@ -28,7 +28,6 @@ public class HomeRestController {
     private EventService eventService;
 
     @GetMapping("/home")
-
     public Page<EventDTO> events(@RequestParam(defaultValue = "0") int page,
                                  @RequestParam(defaultValue = "2") int size){
 
