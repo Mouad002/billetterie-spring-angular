@@ -32,6 +32,7 @@ import { EventsComponent } from './events/events.component';
 import {
   EventDetailsOrganizerComponent
 } from './features/organizer/components/event-details-organizer/event-details-organizer.component';
+import { OrganizerLayoutComponentComponent } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import {
     TicketsSelectionComponent,
     UpdateEventsComponent,
     EventsComponent,
-    EventDetailsOrganizerComponent
+    EventDetailsOrganizerComponent,
+    OrganizerLayoutComponentComponent
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,7 @@ export class NewEventsComponent implements OnInit{
     location: [null, Validators.required],
     image: ["1.jpg"],
     category: [null, Validators.required],
-    status: [null, Validators.required],
+    status: ["DRAFT"],
     dateEvent: [null, Validators.required],
     heure: [null, Validators.required]
     });
