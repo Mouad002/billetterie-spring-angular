@@ -31,7 +31,7 @@ public class BilletterieBackendApplication {
 		SpringApplication.run(BilletterieBackendApplication.class, args);
 	}
 
-	@Bean
+//	@Bean
 	CommandLineRunner adminFakeDataInitializer(OrganizerRepository organizerRepository, EventRepository eventRepository, TicketRepository ticketRepository) {
 		return args -> {
 //			Organizer organizer = new Organizer();

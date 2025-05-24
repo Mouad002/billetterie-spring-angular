@@ -6,7 +6,6 @@ import {catchError, Observable, throwError} from 'rxjs';
   providedIn: 'root'
 })
 export class ImageUploaderService {
-  private uploadUrl = 'http://localhost:8085/api/uploads/Event';
   constructor(private http: HttpClient) {
   }
 

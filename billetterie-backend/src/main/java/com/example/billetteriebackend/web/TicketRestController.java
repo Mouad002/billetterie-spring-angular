@@ -1,6 +1,7 @@
 package com.example.billetteriebackend.web;
 
 import com.example.billetteriebackend.entities.TicketTypeAllocation;
+import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.services.OrganizerServices;
 import com.example.billetteriebackend.services.TicketService;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ public class TicketRestController {
     private OrganizerServices organizerServices;
     private TicketService ticketService;
     @PostMapping("/ticketType")
-    public TicketTypeAllocation saveTicketType(@RequestBody TicketTypeAllocation ticketTypeAllocation){
+    public TicketTypeAllocation saveTicketType(@RequestBody TicketTypeAllocation ticketTypeAllocation) throws EventNotFoundException {
         return organizerServices.saveTicketType(ticketTypeAllocation);
     }
     @GetMapping("/ticketTypeList")

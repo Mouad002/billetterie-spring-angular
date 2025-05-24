@@ -13,6 +13,7 @@ import { ManageEventsComponent } from '../app/features/admin/components/manage-e
 import { ManageUsersComponent } from '../app/features/admin/components/manage-users/manage-users.component';
 import { OrganizerLayoutComponentComponent } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
 import { EventDetailsOrganizerComponent } from './features/organizer/components/event-details-organizer/event-details-organizer.component';
+import {PaymentComponent} from './features/payment/payment.component';
 
 
 const routes: Routes = [
@@ -27,8 +28,9 @@ const routes: Routes = [
 
   {path:"home", component: EventsComponent},
   {path:"ticket-selection", component: TicketsSelectionComponent},
-  
-  {path: 'admin-panel', component: LayoutComponent, 
+  {path:'payment', component: PaymentComponent},
+
+  {path: 'admin-panel', component: LayoutComponent,
     children: [
       {path: 'validate-events', component: EvaluateEventComponent},
       {path: 'manage-events', component: ManageEventsComponent},

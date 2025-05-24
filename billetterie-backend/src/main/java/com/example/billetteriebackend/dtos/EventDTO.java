@@ -8,6 +8,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class EventDTO {
@@ -30,10 +31,8 @@ public class EventDTO {
     @Enumerated(EnumType.STRING)
     private Status status;
     private  double price;
-
-
-
     private int currentPage;
     private int totalPages;
     private int pageSize;
+
 }

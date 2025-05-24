@@ -2,7 +2,9 @@
   <!-- Event Section -->
   <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden mb-6">
     <div class="relative h-48 bg-gray-200">
-      <img  src="salah.jpg" alt="salah.jpg" class="w-full h-full object-cover absolute inset-0">
+      <img
+        *ngIf="eventImageSafeUrl" [src]="eventImageSafeUrl"
+        alt="salah.jpg" class="w-full h-full object-cover absolute inset-0">
       <div *ngIf="!event" class="flex items-center justify-center h-full text-gray-500">
         No Image Available
       </div>
@@ -78,7 +80,7 @@
 
   </div>
   <div class="bg-main-orange px-5 py-4 mt-4 shadow-md btnBuyTicket" style="cursor: pointer; border-radius: 20px">
-    <a href="https://tailwindcss.com/docs/colors" class="flex justify-between items-center">
+    <a routerLink="/payment" class="flex justify-between items-center">
       <span class="text-lg font-bold text-white">Next</span>
       <span class="text-xl font-bold text-white">${{ getTotalPrice().toFixed(2) }}</span>
     </a>

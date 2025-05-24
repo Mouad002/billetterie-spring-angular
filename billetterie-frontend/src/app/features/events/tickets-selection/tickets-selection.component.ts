@@ -5,6 +5,7 @@ import {catchError, Observable, throwError} from 'rxjs';
 import {AppEvent} from '../../../../model/event.model';
 import {EventService} from '../../../services/event.service';
 import {TicketType} from '../../../../model/TicketType.model';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 interface TicketSelection {
   ticketId: string;
@@ -21,9 +22,12 @@ export class TicketsSelectionComponent implements OnInit{
   eventId!: number;
   event: AppEvent | null = null;
   errorMessage!: string;
+  eventImageUrl: string | null = null;
+  eventImageSafeUrl: SafeUrl | null = null;
+  imageLoading = false;
   ticketSelections: { ticketId: number, quantity: number }[] = []; // Initialize ticketSelections as an empty array
 
-  constructor(private route: ActivatedRoute, private ticketService: TicketServiceService, private eventService: EventService) {}
+  constructor(private route: ActivatedRoute, private ticketService: TicketServiceService, private eventService: EventService,private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
 
@@ -81,6 +85,7 @@ export class TicketsSelectionComponent implements OnInit{
     ).subscribe({
       next: data => {
         this.event = data;
+        this.loadEventImage(this.event.image);
         console.log('Event Details:', this.event); // Log the event details after it's fetched
       },
       error: err => console.error(err)
@@ -101,6 +106,31 @@ export class TicketsSelectionComponent implements OnInit{
       },
       error: (err) => {
         console.error('Failed to load ticket types:', err);
+      }
+    });
+  }
+  extractFileName(filePath: string): string {
+    return filePath.replace(/^.*[\\\/]/, '');
+  }
+  loadEventImage(imageName: string) {
+    const cleanImageName = this.extractFileName(imageName);
+    if (!cleanImageName) return;
+    this.imageLoading = true;
+    this.eventService.getEventImage(cleanImageName).pipe(
+      catchError(error => {
+        console.error('Error loading image:', error);
+        this.imageLoading = false;
+        return throwError(() => error);
+      })
+    ).subscribe({
+      next: (imageBlob: Blob) => {
+        const objectURL = URL.createObjectURL(imageBlob);
+        this.eventImageSafeUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        this.imageLoading = false;
+      },
+      error: err => {
+        console.error('Error processing image:', err);
+        this.imageLoading = false;
       }
     });
   }

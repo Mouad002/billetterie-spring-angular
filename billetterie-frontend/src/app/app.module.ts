@@ -35,6 +35,7 @@ import {
 import {
   OrganizerLayoutComponentComponent
 } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
+import {PaymentComponent} from './features/payment/payment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import {
     EventsComponent,
     EventDetailsOrganizerComponent,
     OrganizerLayoutComponentComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import com.example.billetteriebackend.repositories.TicketTypeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.w3c.dom.events.EventException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,8 +67,16 @@ public class OrganizerServicesImpl implements OrganizerServices {
     }
 
     @Override
-    public TicketTypeAllocation saveTicketType(TicketTypeAllocation ticketTypeAllocation) {
-        TicketTypeAllocation savedTicketType = ticketTypeRepository.save(ticketTypeAllocation);
+    public TicketTypeAllocation saveTicketType(TicketTypeAllocation ticketTypeAllocation) throws EventNotFoundException {
+        Event event = eventRepository.findById(ticketTypeAllocation.getEvent().getId())
+                .orElseThrow(() -> new EventNotFoundException("Event not found"));
+        TicketTypeAllocation ticketType = new TicketTypeAllocation();
+        ticketType.setPrice(ticketTypeAllocation.getPrice());
+        ticketType.setMaxQuantity(ticketTypeAllocation.getMaxQuantity());
+        ticketType.setDescription(ticketTypeAllocation.getDescription());
+        ticketType.setTicketType(ticketTypeAllocation.getTicketType());
+        ticketType.setEvent(event);
+        TicketTypeAllocation savedTicketType = ticketTypeRepository.save(ticketType);
         return savedTicketType;
     }
 }

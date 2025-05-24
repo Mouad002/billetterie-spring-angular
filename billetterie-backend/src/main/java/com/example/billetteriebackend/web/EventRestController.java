@@ -2,6 +2,7 @@ package com.example.billetteriebackend.web;
 
 
 import com.example.billetteriebackend.dtos.EventDTO;
+import com.example.billetteriebackend.entities.TicketTypeAllocation;
 import com.example.billetteriebackend.exceptions.EventNotFoundException;
 import com.example.billetteriebackend.services.OrganizerServices;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,10 @@ public class EventRestController {
     @GetMapping("/organizer/events/search")
     public List<EventDTO> searchEvent(@RequestParam(name = "keyword", defaultValue = "") String keyword){
         return organizerServices.searchEvents(keyword);
+    }
+    @PostMapping("/organizer/events/ticketType")
+    public TicketTypeAllocation saveTicketType(@RequestBody TicketTypeAllocation ticketTypeAllocation) throws EventNotFoundException {
+        return organizerServices.saveTicketType(ticketTypeAllocation);
     }
 
 

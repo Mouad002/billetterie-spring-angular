@@ -21,5 +21,6 @@ public class TicketTypeAllocation {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Event event;
     private int maxQuantity;
+    private String description;
     private double price;
 }

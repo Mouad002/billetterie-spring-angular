@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { AppEvent } from '../../../../../model/event.model';
 import {TicketType} from '../../../../../model/TicketType.model';
 import {ImageUploaderService} from '../../../../services/image-uploader.service';
+import {TicketServiceService} from '../../../../services/ticketServices/ticket-service.service';
 //import {ImageUploaderService} from '../../../../services/image-uploader.service';
 
 @Component({
@@ -21,25 +22,26 @@ export class NewEventsComponent implements OnInit{
   imagePreview: string | ArrayBuffer | null = null;
   ticketTypes: TicketType[] = [];
   formData: FormData = new FormData();
+  imageName!: string;
+  savedEvent!: AppEvent;
 
-  constructor(private fb:FormBuilder, private eventService : EventsService, private router : Router, private imageUploaderService: ImageUploaderService ){}
+  constructor(private fb:FormBuilder, private eventService : EventsService, private router : Router, private imageUploaderService: ImageUploaderService, private ticketService: TicketServiceService){}
 
   ngOnInit(): void {
     this.newEventFormGroup = this.fb.group({
-    title: [null, Validators.required],
-    description: [null, Validators.required],
-    location: [null, Validators.required],
-    image: [null],
-    category: [null, Validators.required],
-    status: [null, Validators.required],
-    dateEvent: [null, Validators.required],
-    heure: [null, Validators.required],
-      ticketTypes: this.fb.array([])
+      title: [null, Validators.required],
+      description: [null, Validators.required],
+      location: [null, Validators.required],
+      image: [null],
+      category: [null, Validators.required],
+      status: [null, Validators.required],
+      dateEvent: [null, Validators.required],
+      heure: [null, Validators.required]
     });
     // Update ticketTypes array whenever form changes, filtering out invalid entries
     this.ticketTypesArray.valueChanges.subscribe((values: any[]) => {
       this.ticketTypes = values.filter(tt =>
-        tt.name && tt.price > 0 && tt.quantity > 0
+        tt.ticketType && tt.price > 0 && tt.maxQuantity > 0 && tt.description
       );
       console.log("Filtered Ticket Types: ", this.ticketTypes);
     });
@@ -49,9 +51,9 @@ export class NewEventsComponent implements OnInit{
   }
   addTicketType(): void {
     const ticketFormGroup = this.fb.group({
-      name: ['', Validators.required],
+      ticketType: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(1)]],
-      quantity: [0, [Validators.required, Validators.min(1)]],
+      maxQuantity: [0, [Validators.required, Validators.min(1)]],
       description: ['']
     });
 
@@ -63,7 +65,7 @@ export class NewEventsComponent implements OnInit{
   }
   getTotalTickets(): number {
     return this.ticketTypesArray.controls.reduce((total, group) => {
-      return total + (group.get('quantity')?.value || 0);
+      return total + (group.get('maxQuantity')?.value || 0);
     }, 0);
   }
   getPriceRange(): string {
@@ -73,6 +75,49 @@ export class NewEventsComponent implements OnInit{
     const max = Math.max(...prices);
     return min === max ? `${min}` : `${min} - ${max}`;
   }
+
+
+
+
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement)?.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+        console.log("Image Preview: ", this.imagePreview);
+        console.log("Image name "+ file.name);
+      };
+      reader.readAsDataURL(file);
+
+      this.formData.append('file', file);
+    }
+  }
+  handleImageUpload() {
+    this.imageUploaderService.handleUploadImage(this.formData);
+  }
+  saveTicketTypes() {
+    const ticketTypes = this.ticketTypesArray.value;
+    console.log("Ticket Types: ", ticketTypes);
+    ticketTypes.forEach((ticketType: TicketType) => {
+      this.ticketService.saveTicketType(ticketType).subscribe({
+        next: (data) => {
+          console.log("Ticket Type saved: ", data);
+        },
+        error: (err) => {
+          console.error("Error saving ticket type: ", err);
+          Swal.fire({
+            icon: "error",
+            title: "Erreur",
+            text: "Impossible d'ajouter le type de billet !",
+            footer: '<a href="#">Voir les détails</a>'
+          });
+        }
+      });
+    });
+    console.log("Ticket Types with Event ID: ", ticketTypes);
+  }
+
 
   handleSaveEvent(){
     if(this.newEventFormGroup.invalid){
@@ -87,17 +132,19 @@ export class NewEventsComponent implements OnInit{
     let event:AppEvent = this.newEventFormGroup.value;
     this.eventService.saveEvent(event).subscribe({
       next : data =>{
-         Swal.fire({
+        Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Evenement ajouté avec succès",
           showConfirmButton: false,
           timer: 2000
         });
+        this.savedEvent = data;
+        console.log("Saved Event: ", this.savedEvent);
         this.router.navigateByUrl("/my-events")
       },
       error : err =>{
-         Swal.fire({
+        Swal.fire({
           icon: "error",
           title: "Erreur",
           text: "Impossible d'ajouter l'Evenement !",
@@ -105,25 +152,9 @@ export class NewEventsComponent implements OnInit{
         });
       }
     })
+    this.saveTicketTypes();
     this.handleImageUpload();
   }
-  onFileSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement)?.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result;
-        console.log("Image Preview: ", this.imagePreview);
-        console.log("Image name "+ file.name);
-      };
-      reader.readAsDataURL(file);
-      this.formData.append('file', file);
-    }
-  }
-  handleImageUpload() {
-      this.imageUploaderService.handleUploadImage(this.formData);
-  }
-
-
 
 }
+

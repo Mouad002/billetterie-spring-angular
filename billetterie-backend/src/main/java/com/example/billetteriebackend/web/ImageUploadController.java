@@ -1,9 +1,6 @@
 package com.example.billetteriebackend.web;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -13,6 +10,7 @@ import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/images")
+@CrossOrigin(origins = "*")
 public class ImageUploadController {
     private static final String UPLOAD_DIR_EVENT = "src/main/resources/uploads/Events/";
     private static final String UPLOAD_DIR_PROFILES = "src/main/resources/uploads/Profiles/";

@@ -14,5 +14,5 @@ public interface OrganizerServices {
     EventDTO updateEvent(EventDTO eventDTO);
     void deleteEvents(Long id);
     List<EventDTO> searchEvents(String keyword);
-    TicketTypeAllocation saveTicketType(TicketTypeAllocation ticketTypeAllocation);
+    TicketTypeAllocation saveTicketType(TicketTypeAllocation ticketTypeAllocation) throws EventNotFoundException;
 }

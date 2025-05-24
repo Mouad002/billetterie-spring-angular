@@ -2,7 +2,9 @@
   <!-- Left side - Event poster -->
   <div class="w-full lg:w-1/2 p-4 relative event-banner h-full flex flex-col">
     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-xl relative flex-grow">
-      <img src="salah.jpg" alt="Spectacle Salah & Fati" class="w-full h-full" />
+      <img
+        *ngIf="eventImageSafeUrl" [src]="eventImageSafeUrl"
+           alt="Spectacle Salah & Fati" class="w-full h-full" />
       <div class="bg-gray-800 text-white flex justify-between items-center p-2 absolute bottom-0 w-full">
         <div class="flex items-center ml-[320px]">
           <div class="text-xs mr-1">TICKETS EN VENTE SUR</div>
