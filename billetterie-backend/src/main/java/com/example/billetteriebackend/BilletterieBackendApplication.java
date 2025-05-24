@@ -175,7 +175,7 @@ public class BilletterieBackendApplication {
 		return categories.get(random.nextInt(categories.size()));
 	}
 
-//    @Bean
+	//@Bean
 	CommandLineRunner commandLineRunner(OrganizerServices organizerServices) {
 		return args -> {
 
@@ -236,7 +236,7 @@ public class BilletterieBackendApplication {
 
 
 
-	//@Bean
+	@Bean
 	CommandLineRunner commandLineRunnerUserDetails(AccountService accountService) {
 		return args -> {
 			accountService.addNewRole("USER");

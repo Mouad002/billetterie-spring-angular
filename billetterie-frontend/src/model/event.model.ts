@@ -8,4 +8,5 @@ export interface AppEvent {
     status:string;
     dateEvent:string;
     heure:string;
+    price : number;
   }

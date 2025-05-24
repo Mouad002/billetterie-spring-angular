@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-organizer-layout-component',
@@ -13,7 +14,7 @@ export class OrganizerLayoutComponentComponent implements OnInit{
   showWelcomeMessage = true;
   nameOrganizer: string = 'Mohamed Amine'; // par défaut
 
-  constructor(private router : Router){}
+  constructor(private router : Router, public authService: AuthService){}
 
 
 
@@ -26,6 +27,10 @@ export class OrganizerLayoutComponentComponent implements OnInit{
           this.showWelcomeMessage = false;
         }
       });
+  }
+
+  handleLogout() {
+    this.authService.logout();
   }
 
 }

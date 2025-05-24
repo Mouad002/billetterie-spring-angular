@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+
 @Component({
   selector: 'app-login',
   standalone: false,
@@ -10,8 +11,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
 formLogin! :FormGroup;
-  
-  
+
+
   constructor(private fb:FormBuilder, private reter:Router,private authService:AuthService ) {}
 
   ngOnInit(): void {
@@ -22,20 +23,20 @@ formLogin! :FormGroup;
   }
 
   handleLogin() {
-    
-    let username = this.formLogin.value.username;
-    let password = this.formLogin.value.password;   
+
+      let username = this.formLogin.value.username;
+    let password = this.formLogin.value.password;
     this.authService.login(username,password).subscribe({
       next: (data) => {
-        this.authService.loadProfile(data);   
-        this.reter.navigateByUrl("/admin-panel");
+        this.authService.loadProfile(data);
+        this.reter.navigateByUrl("/organizer");
       },
       error: (err) => {
         console.log(err);
-      }   
+      }
     }
   )
 
 
-}   
+}
     }

@@ -24,16 +24,19 @@ public class EventRestController {
     }
 
     @GetMapping("/organizer/events/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ORGANIZER')")
     public EventDTO getEvent(@PathVariable(name = "id") Long eventId)throws EventNotFoundException {
         return organizerServices.getEvent(eventId);
     }
 
     @PostMapping("/organizer/events")
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ORGANIZER')")
     public EventDTO saveEvent(@RequestBody EventDTO eventDTO){
         return organizerServices.saveEvent(eventDTO);
     }
 
     @PutMapping("/organizer/events/{eventId}")
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ORGANIZER')")
     public EventDTO updateEvent(@PathVariable Long eventId, @RequestBody EventDTO eventDTO) {
         System.out.println("EventDTO reçu : " + eventDTO); // debug
         eventDTO.setId(eventId);
@@ -41,6 +44,7 @@ public class EventRestController {
     }
 
     @GetMapping("/organizer/events/search")
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ORGANIZER')")
     public List<EventDTO> searchEvent(@RequestParam(name = "keyword", defaultValue = "") String keyword){
         return organizerServices.searchEvents(keyword);
     }
