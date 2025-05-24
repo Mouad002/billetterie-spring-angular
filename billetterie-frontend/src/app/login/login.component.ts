@@ -23,13 +23,13 @@ formLogin! :FormGroup;
 
   handleLogin() {
     
-      let username = this.formLogin.value.username;
+    let username = this.formLogin.value.username;
     let password = this.formLogin.value.password;   
     this.authService.login(username,password).subscribe({
       next: (data) => {
-this.authService.loadProfile(data);   
-this.reter.navigateByUrl("/admin-panel");
-},
+        this.authService.loadProfile(data);   
+        this.reter.navigateByUrl("/admin-panel");
+      },
       error: (err) => {
         console.log(err);
       }   

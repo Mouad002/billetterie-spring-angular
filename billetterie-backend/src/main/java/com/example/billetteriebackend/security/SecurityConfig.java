@@ -41,7 +41,7 @@ public class SecurityConfig {
     //private UserDetailsServiceImpl userDetailsServiceImpl;
 
 
-    //@Bean
+    @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         PasswordEncoder passwordEncoder = passwordEncoder();
         return new InMemoryUserDetailsManager(
