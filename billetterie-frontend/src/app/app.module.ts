@@ -36,6 +36,14 @@ import {
   OrganizerLayoutComponentComponent
 } from './features/organizer/components/organizer-layout-component/organizer-layout-component.component';
 import {PaymentComponent} from './features/payment/payment.component';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterComponent } from './register/register.component';
+import { AppHttpInterceptor } from './interceptors/app-http.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +63,10 @@ import {PaymentComponent} from './features/payment/payment.component';
     EventDetailsOrganizerComponent,
     OrganizerLayoutComponentComponent,
     PaymentComponent,
+    LoginComponent,
+    NavbarComponent,
+    RegisterComponent,
+    NotAuthorizedComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +89,9 @@ import {PaymentComponent} from './features/payment/payment.component';
 
   ],
   providers: [
-    provideHttpClient()
+    { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },
+    provideHttpClient(),
+
   ],
   bootstrap: [AppComponent]
 })

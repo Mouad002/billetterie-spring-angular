@@ -1,21 +1,21 @@
-<!-- Barre de recherche avec bouton -->
+<!-- Search bar with button -->
         <div class="flex justify-center mb-8">
             <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchEvents()">
                 <div class="w-full max-w-xl flex">
                     <input
                         type="text"
-                        placeholder="Rechercher un événement..."
+                        placeholder="Search for an event..."
                         class="flex-grow px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
                         formControlName="keyword"
                     />
                     <button type="submit" class="px-4 bg-orange-500 text-white font-semibold rounded-r-lg hover:bg-orange-600 transition">
-                        Rechercher
+                        Search
                     </button>
                 </div>
             </form>
         </div>
 
-        <!-- Affichage des événements -->
+        <!-- Events Display -->
         <div *ngIf="events | async as eventList; else loading">
         <div *ngIf="eventList.length > 0; else noResults" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
             <div *ngFor="let event of eventList" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
@@ -27,34 +27,40 @@
                 <p class="text-gray-600 text-sm mb-3">{{ event.description }}</p>
                 <p class="text-gray-500 text-sm">
                   <i class="fas fa-calendar-alt mr-1"></i>
-                  {{ event.dateEvent | date: 'dd-MM-yyyy' }} à {{ event.dateEvent | date: 'HH:mm' }}
+                  {{ event.dateEvent | date: 'dd-MM-yyyy' }} at {{ event.dateEvent | date: 'HH:mm' }}
                 </p>
                 <p class="text-gray-500 text-sm">
                   <i class="fas fa-map-marker-alt mr-1"></i>{{ event.location }}
                 </p>
-                
-                <!-- Bouton Détails -->
-                <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition font-semibold"
-                routerLink="#detaillsEvent" routerLink="/organizer/events-details/{{event.id}}">
-                Détails
-                </button>
+                                
+                <!-- Details Button -->
+                <div class="flex justify-between items-center mt-4">
+                  <p class="text-gray-700 text-sm font-medium">
+                    <i class="fas fa-tag mr-1"></i>{{ event.price }} MAD
+                  </p>
+                  <button
+                    class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition font-semibold"
+                    [routerLink]="'/organizer/events-details/' + event.id">
+                    Details
+                  </button>
+                </div>
             </div>
             </div>
         </div>
         </div>
 
 
-        <!-- Template si pas de résultat -->
+        <!-- Template for no results -->
         <ng-template #noResults>
-          <p class="mt-8 text-center text-gray-500">Aucun événement trouvé.</p>
+          <p class="mt-8 text-center text-gray-500">No events found.</p>
         </ng-template>
 
-        <!-- Template pendant le chargement -->
+        <!-- Loading template -->
         <ng-template #loading>
-          <p class="mt-8 text-center text-gray-400">Chargement des événements...</p>
+          <p class="mt-8 text-center text-gray-400">Loading events...</p>
         </ng-template>
 
-        <!-- Message d'erreur -->
+        <!-- Error message -->
         <div *ngIf="errorMessage" class="mt-4 text-red-600 font-semibold text-center">
           {{ errorMessage }}
         </div>

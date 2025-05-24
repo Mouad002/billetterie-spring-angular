@@ -28,5 +28,5 @@ public class Ticket {
     private Event event;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private AppUser user;
 }

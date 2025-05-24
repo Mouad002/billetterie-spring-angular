@@ -36,7 +36,8 @@ export class NewEventsComponent implements OnInit{
       category: [null, Validators.required],
       status: [null, Validators.required],
       dateEvent: [null, Validators.required],
-      heure: [null, Validators.required]
+      heure: [null, Validators.required],
+      ticketTypes: this.fb.array([])
     });
     // Update ticketTypes array whenever form changes, filtering out invalid entries
     this.ticketTypesArray.valueChanges.subscribe((values: any[]) => {

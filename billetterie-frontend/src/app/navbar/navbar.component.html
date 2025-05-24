@@ -1,0 +1,34 @@
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-calendar-alt text-[#f97316] text-2xl"></i>
+        <h1 class="text-xl font-bold text-black">EventSphere</h1>
+      </div>
+      <nav class="hidden md:flex space-x-6">
+       
+      </nav>
+      <div class="flex items-center space-x-4">
+        <button class="md:hidden text-gray-600">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+
+          <div  *ngIf="authService.isAuthenticated == true" class="relative">
+             <a *ngIf="authService.roles.includes('ROLE_ORGANIZER')" routerLink="/organizer" class="mr-2 text-gray-600 hover:text-[#f97316] transition">Organizer space</a>
+        <a  *ngIf="authService.roles.includes('ROLE_ADMIN')" routerLink="/admin-panel" class="text-gray-600 hover:text-[#f97316] transition">Admin space</a>
+          
+        </div> 
+<div  *ngIf="authService.isAuthenticated == true" class="relative">
+             <a  class="mr-2 text-gray-600 hover:text-[#f97316] transition"> {{authService.username}}</a>
+        <button (click)="handleLogout()" class="btn btn-success">Logout</button>
+          
+        </div>
+
+        <div  *ngIf="authService.isAuthenticated == false" class="relative">
+             <a routerLink="/register" class="mr-2 text-gray-600 hover:text-[#f97316] transition">Register</a>
+        <a routerLink="/login" class="text-gray-600 hover:text-[#f97316] transition">Login</a>
+          
+        </div>
+      </div>
+    </div>
+  </header>
