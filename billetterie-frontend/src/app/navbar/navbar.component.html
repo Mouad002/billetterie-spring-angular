@@ -13,7 +13,11 @@
           <i class="fas fa-bars text-xl"></i>
         </button>
 
-           
+          <div  *ngIf="authService.isAuthenticated == true" class="relative">
+             <a *ngIf="authService.roles.includes('ROLE_ORGANIZER')" routerLink="/organizer" class="mr-2 text-gray-600 hover:text-[#f97316] transition">Organizer space</a>
+        <a  *ngIf="authService.roles.includes('ROLE_ADMIN')" routerLink="/admin-panel" class="text-gray-600 hover:text-[#f97316] transition">Admin space</a>
+          
+        </div> 
 <div  *ngIf="authService.isAuthenticated == true" class="relative">
              <a  class="mr-2 text-gray-600 hover:text-[#f97316] transition"> {{authService.username}}</a>
         <button (click)="handleLogout()" class="btn btn-success">Logout</button>
